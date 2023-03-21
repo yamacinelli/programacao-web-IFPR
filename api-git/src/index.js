@@ -50,14 +50,16 @@ function callApiCommits() {
 
 function buildMapDataCommits(json) {
     const commitsPerDay = {};
+
     json.forEach(element => {
         const dateCommit = element.commit.author.date.substring(0, 10);
-        const messageCommit = element.commit.message;
+        const messageCommit = { message: element.commit.message };
 
         if (commitsPerDay[dateCommit]) {
+            commitsPerDay[dateCommit].message.push(messageCommit);
             commitsPerDay[dateCommit].count++;
         } else {
-            commitsPerDay[dateCommit] = {count: 1, date: dateCommit, message: messageCommit};
+            commitsPerDay[dateCommit] = {count: 1, date: dateCommit, message: [ messageCommit ]};
         }
     });
 
