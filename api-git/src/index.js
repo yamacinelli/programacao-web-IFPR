@@ -10,7 +10,8 @@ const apiGit = "https://api.github.com/repos"
 
 function searchCommits() {
     this.obtainValuesInput();
-    this.callApi();
+    this.callApiForks();
+    this.callApiCommits();
 }
 
 //Obtain all values from form
@@ -33,7 +34,7 @@ function obtainValuesInput() {
 }
 
 //Call Api Git to obtain JSON with information of commits
-function callApi() {
+function callApiCommits() {
     let url = `${apiGit}/${this.ownerRepo}/${this.nameRepo}/commits`;
 
     if (this.startDate && this.endDate) url = `${url}?since=${this.startDate}&until=${this.endDate}`;
@@ -43,11 +44,11 @@ function callApi() {
             if (response.status === 200) return response.json();
         })
         .then(json => {
-            if (json) this.buildMapData(json);
+            if (json) this.buildMapDataCommits(json);
         });
 }
 
-function buildMapData(json) {
+function buildMapDataCommits(json) {
     const commitsPerDay = {};
     json.forEach(element => {
         const dateCommit = element.commit.author.date.substring(0, 10);
@@ -55,33 +56,105 @@ function buildMapData(json) {
 
         if (commitsPerDay[dateCommit]) {
             commitsPerDay[dateCommit].count++;
-        } else  {
-            commitsPerDay[dateCommit] = { count: 1, date: dateCommit, message: messageCommit };
+        } else {
+            commitsPerDay[dateCommit] = {count: 1, date: dateCommit, message: messageCommit};
         }
     });
 
-    if (commitsPerDay) this.buildTableData(commitsPerDay);
+    if (commitsPerDay) this.buildTableDataCommits(commitsPerDay);
 }
 
-function buildObject(map) {
+//Call Api Git to obtain information about forks and starring
+function callApiForks() {
+    let url = `${apiGit}/${this.ownerRepo}/${this.nameRepo}/forks`;
+
+    fetch(url)
+        .then(response => {
+            if (response.status === 200) return response.json();
+        })
+        .then(json => {
+            if (json.size) this.buildMapDataForks(json);
+        });
+}
+
+function buildMapDataForks(json) {
+    let forkMap = {};
+    json.forEach(element => {
+       forkMap = { forks_count: element.forks_count, stargazers_count: element.stargazers_count };
+    });
+
+    if (forkMap.size) this.buildTableDataForks(forkMap);
+}
+
+function buildObjectForks(map) {
+    return Object.keys(map).map(() => {
+        return {forks_count: map.forks_count, stargazers_count: map.stargazers_count}
+    });
+}
+
+function buildObjectCommits(map) {
     return Object.keys(map).map(indexDate => {
         return {count: map[indexDate].count, date: indexDate, message: map[indexDate].message}
     });
 }
 
-function buildTableData(map) {
-    let tbody = document.getElementById("tbody");
+function buildTableDataForks(map) {
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const th_fork = document.createElement("th");
+    const th_star = document.createElement("th");
+    const tbody = document.createElement("tbody");
 
-    this.buildObject(map).forEach(element => {
-       let trow = tbody.insertRow();
+    table.appendChild(thead);
+    thead.appendChild(th_fork).innerText = 'Forks Count'
+    thead.appendChild(th_star).innerText = 'Stars Count'
+    table.appendChild(tbody);
 
-       const tdata_date = trow.insertCell();
-       tdata_date.innerText = element.date;
+    this.buildObjectForks(map).forEach(element => {
+        let trow = tbody.insertRow();
 
-       const tdata_message = trow.insertCell();
-       tdata_message.innerText = element.message;
+        const tdata_fork = trow.insertCell();
+        tdata_fork.innerText = element.forks_count;
 
-       const tdata_count = trow.insertCell();
-       tdata_count.innerText = element.count;
+        const tdata_star = trow.insertCell();
+        tdata_star.innerText = element.stargazers_count;
     });
+
+    //Clean content before append
+    document.getElementById("table-forks").innerHTML = '';
+
+    document.getElementById("table-forks").appendChild(table);
+}
+
+function buildTableDataCommits(map) {
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const th_date = document.createElement("th");
+    const th_message = document.createElement("th");
+    const th_count = document.createElement("th");
+    const tbody = document.createElement("tbody");
+
+    table.appendChild(thead);
+    thead.appendChild(th_date).innerText = 'Date'
+    thead.appendChild(th_message).innerText = 'Message'
+    thead.appendChild(th_count).innerText = 'Count'
+    table.appendChild(tbody);
+
+    this.buildObjectCommits(map).forEach(element => {
+        let trow = tbody.insertRow();
+
+        const tdata_date = trow.insertCell();
+        tdata_date.innerText = element.date;
+
+        const tdata_message = trow.insertCell();
+        tdata_message.innerText = element.message;
+
+        const tdata_count = trow.insertCell();
+        tdata_count.innerText = element.count;
+    });
+
+    //Clean content before append
+    document.getElementById("table-commits").innerHTML = '';
+
+    document.getElementById("table-commits").appendChild(table);
 }
