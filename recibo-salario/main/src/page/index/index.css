@@ -1,0 +1,194 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.white-theme {
+    background-color: #ffffff;
+}
+
+.dark-theme {
+    background-color: #111111;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: auto;
+    color: #000000;
+}
+
+.container .row {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.container .row .col-1 {
+    flex: 100%;
+}
+
+.container .row .col-2 {
+    flex: 50%;
+}
+
+.container .row .col-3 {
+    flex: 33.33%;
+}
+
+.container .row .col-4{
+    flex: 25%;
+}
+
+.container .row .col-5 {
+    flex: 20%;
+}
+
+.container .row .col-6 {
+    flex: 16.66%;
+}
+
+input[type=text], input[type=date] {
+    background-color: #eeeeee;
+    color: black;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    width: 99.7%;
+    line-height: 40px;
+    box-sizing: content-box;
+    padding: 0;
+}
+
+input[type=checkbox], input[type=radio] {
+    outline: none;
+    margin: 0;
+}
+
+.label {
+    font-weight: 600;
+    color: lightslategrey;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.label-radio {
+    color: black;
+    margin: 10px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    box-shadow:  0 4px 8px 0 lightgrey;
+    border-radius: 5px;
+    width: 70%;
+}
+
+.card:hover {
+    box-shadow:  0 16px 24px 0 lightgrey !important;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+span {
+    color: dodgerblue;
+    font-size: 12px;
+}
+
+.span-write {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.span-write-valor {
+    border-style: groove;
+    width: 200px;
+    text-align: center;
+    float: right;
+}
+
+.span-write-data {
+    text-align: left;
+}
+
+.assinatura-line {
+    border-bottom: 4px groove;
+    width: 400px;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+button[type=submit], button[type=button] {
+    background-color: cornflowerblue;
+    border: 0;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.img-contrast {
+    width: 35px;
+}
+
+.invert-1 {
+    filter: invert(1);
+}
+
+.img-button {
+    width: 35px;
+    filter: invert(1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    padding-top: 10%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #ffffff;
+    margin: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 15px;
+    width: 80%;
+    box-shadow: 0 8px 16px 0;
+    animation-name: animastop;
+    animation-duration: 0.4s;
+}
+
+@keyframes animastop {
+    from { top: -300px; opacity: 0 }
+    to { top:0; opacity: 1 }
+}
+
+.row-chave {
+    display: none;
+}

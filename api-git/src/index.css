@@ -1,0 +1,84 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+.dark-theme {
+    background-color: #1c1b22;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: auto;
+    color: #000000;
+}
+
+.container .row {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.container .row .col-1 {
+    flex: 100%;
+}
+
+.container .row .col-2 {
+    flex: 50%;
+}
+
+.container .row .col-3 {
+    flex: 33.33%;
+}
+
+.container .row .col-4{
+    flex: 25%;
+}
+
+.container .row .col-5 {
+    flex: 20%;
+}
+
+.container .row .col-6 {
+    flex: 16.66%;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+input[type=text], input[type=date] {
+    background-color: #eeeeee;
+    color: black;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    width: 99.7%;
+    line-height: 40px;
+    box-sizing: content-box;
+    padding: 0;
+}
+
+input[type=checkbox], input[type=radio] {
+    outline: none;
+    margin: 0;
+}
+
+button[type=submit] {
+    background-color: cornflowerblue;
+    border: 0;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+}

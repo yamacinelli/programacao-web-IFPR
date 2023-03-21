@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>API Git Commits</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body class="dark-theme">
+<div class="container">
+    <div class="row center">
+        <h1>API Git Commits</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-1">
+            <label for="urlComplete">URL Complete</label>
+            <input type="text" id="urlComplete">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1 center">
+            <h3>OR</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label for="ownerRepo">Owner Repository</label>
+            <input type="text" id="ownerRepo">
+        </div>
+
+        <div class="col-2">
+            <label for="nameRepo">Name Repository</label>
+            <input type="text" id="nameRepo">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate">
+        </div>
+
+        <div class="col-2">
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1 center">
+            <button type="submit" onclick="searchCommits()">Search</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1 center">
+            <table>
+                <thead>
+                    <th>Date</th>
+                    <th>Message</th>
+                    <th>Count</th>
+                </thead>
+
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="index.js"></script>
+</body>
+
+</html>
