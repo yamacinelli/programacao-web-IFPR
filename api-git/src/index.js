@@ -63,7 +63,7 @@ function buildMapDataCommits(json) {
         }
     });
 
-    if (commitsPerDay) this.buildTableDataCommits(commitsPerDay);
+    if (commitsPerDay.size) this.buildTableDataCommits(commitsPerDay);
 }
 
 //Call Api Git to obtain information about forks and starring
@@ -145,12 +145,19 @@ function buildTableDataCommits(map) {
     this.buildObjectCommits(map).forEach(element => {
         let trow = tbody.insertRow();
 
+        //Column DATE
         const tdata_date = trow.insertCell();
         tdata_date.innerText = element.date;
 
+        //Column MESSAGE
         const tdata_message = trow.insertCell();
-        tdata_message.innerText = element.message;
+        element.message.forEach(elementMessage => {
+            const listItem = document.createElement("li");
+            tdata_message.appendChild(listItem);
+            listItem.innerText = elementMessage.message;
+        });
 
+        //Column COUNT
         const tdata_count = trow.insertCell();
         tdata_count.innerText = element.count;
     });
