@@ -118,3 +118,11 @@ table tbody tr:active {
     font-weight: bold;
     color: #009879;
 }
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: flex;
+}
