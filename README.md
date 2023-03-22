@@ -18,6 +18,6 @@ Professor: [Frank Willian](https://github.com/frankwco)
 | Data | Link                           |
 | :---------- | :---------------------------------- |
 | `14/03/2023` | [Recibo](https://github.com/yamacinelli/programacao-web-IFPR/tree/main/recibo-salario) |
-| `21/03/2023` | [API Git](https://github.com/yamacinelli/programacao-web-IFPR/tree/main/api-gito) |
+| `21/03/2023` | [API Git](https://github.com/yamacinelli/programacao-web-IFPR/tree/main/api-git) |
 
 ![](https://media.tenor.com/S16335M57AMAAAAd/sinto-foda-flex.gif)
