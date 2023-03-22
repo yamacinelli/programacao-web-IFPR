@@ -75,7 +75,7 @@ function callApiForks() {
             if (response.status === 200) return response.json();
         })
         .then(json => {
-            if (json) this.buildMapDataForks(json);
+            if (json.length > 0) this.buildMapDataForks(json);
         });
 }
 
@@ -105,7 +105,6 @@ function buildTableDataForks(map) {
     thead.appendChild(th_fork).innerText = 'Forks Count'
     thead.appendChild(th_star).innerText = 'Stars Count'
     table.appendChild(tbody);
-
 
     let trow = tbody.insertRow();
 
@@ -161,6 +160,7 @@ function buildTableDataCommits(map) {
     document.getElementById("table-commits").appendChild(table);
 }
 
+//Format date to default pt-BR
 function formatDate(date) {
     const dateFormat = new Date(date);
     const options = {
