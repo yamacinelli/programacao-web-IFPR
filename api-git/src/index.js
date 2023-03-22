@@ -140,7 +140,7 @@ function buildTableDataCommits(map) {
 
         //Column DATE
         const tdata_date = trow.insertCell();
-        tdata_date.innerText = element.date;
+        tdata_date.innerText = this.formatDate(element.date);
 
         //Column MESSAGE
         const tdata_message = trow.insertCell();
@@ -159,4 +159,13 @@ function buildTableDataCommits(map) {
     document.getElementById("table-commits").innerHTML = '';
 
     document.getElementById("table-commits").appendChild(table);
+}
+
+function formatDate(date) {
+    const dateFormat = new Date(date);
+    const options = {
+        day: "numeric", month: "numeric", year: "numeric"
+    };
+
+    return dateFormat.toLocaleDateString("pt-BR", options);
 }
