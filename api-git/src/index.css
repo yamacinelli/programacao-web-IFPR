@@ -122,7 +122,3 @@ table tbody tr:active {
 .hide {
     display: none;
 }
-
-.show {
-    display: flex;
-}

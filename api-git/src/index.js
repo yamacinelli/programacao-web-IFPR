@@ -9,6 +9,10 @@ let endDate = new Date();
 const apiGit = "https://api.github.com/repos"
 
 function searchCommits() {
+    //Hide error messages
+    document.getElementById("errorCommit").style.display = "none";
+    document.getElementById("errorFork").style.display = "none"
+
     this.obtainValuesInput();
     this.callApiForks();
     this.callApiCommits();
@@ -44,7 +48,11 @@ function callApiCommits() {
             if (response.status === 200) return response.json();
         })
         .then(json => {
-            if (json) this.buildMapDataCommits(json);
+            if (json) {
+                this.buildMapDataCommits(json);
+            } else {
+                document.getElementById("errorCommit").style.display = "flex";
+            }
         });
 }
 
@@ -75,7 +83,11 @@ function callApiForks() {
             if (response.status === 200) return response.json();
         })
         .then(json => {
-            if (json.length > 0) this.buildMapDataForks(json);
+            if (json.length > 0) {
+                this.buildMapDataForks(json);
+            } else {
+                document.getElementById("errorFork").style.display = "flex";
+            }
         });
 }
 
