@@ -118,13 +118,3 @@ table tbody tr:active {
     font-weight: bold;
     color: #009879;
 }
-
-.hide {
-    display: none;
-}
-
-img {
-    width: 5%;
-    filter: invert(1);
-    padding-top: 1%;
-}

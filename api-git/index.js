@@ -4,14 +4,19 @@ let ownerRepo = "";
 let nameRepo = "";
 let startDate = new Date();
 let endDate = new Date();
+let mapCommitsPreSave = {};
 
 //Api Git path
 const apiGit = "https://api.github.com/repos"
+
+// Api REST
+const apiRest = "http://localhost:8080";
 
 function searchCommits() {
     //Hide error messages
     document.getElementById("errorCommit").style.display = "none";
     document.getElementById("errorFork").style.display = "none"
+    document.getElementById("buttonSave").style.display = "none"
 
     this.obtainValuesInput();
     this.callApiForks();
@@ -31,6 +36,8 @@ function obtainValuesInput() {
     } else {
         ownerRepo = document.getElementById("ownerRepo").value;
         nameRepo = document.getElementById("nameRepo").value;
+
+        urlComplete = `https://github.com/${ownerRepo}/${nameRepo}`
     }
 
     startDate = document.getElementById("startDate").value;
@@ -50,6 +57,7 @@ function callApiCommits() {
         .then(json => {
             if (json) {
                 this.buildMapDataCommits(json);
+                document.getElementById("buttonSave").style.display = "flex";
             } else {
                 document.getElementById("errorCommit").style.display = "flex";
             }
@@ -63,6 +71,7 @@ function buildMapDataCommits(json) {
         const dateCommit = element.commit.author.date.substring(0, 10);
         const messageCommit = {message: element.commit.message};
 
+        // Build commitsPerDay
         if (commitsPerDay[dateCommit]) {
             commitsPerDay[dateCommit].message.push(messageCommit);
             commitsPerDay[dateCommit].count++;
@@ -71,7 +80,10 @@ function buildMapDataCommits(json) {
         }
     });
 
-    if (commitsPerDay) this.buildTableDataCommits(commitsPerDay);
+    if (commitsPerDay) {
+        this.buildTableDataCommits(commitsPerDay);
+        this.buildMapCommitsPreSave(commitsPerDay);
+    }
 }
 
 //Call Api Git to obtain information about forks and starring
@@ -180,4 +192,55 @@ function formatDate(date) {
     };
 
     return dateFormat.toLocaleDateString("pt-BR", options);
+}
+
+function buildMapCommitsPreSave(map) {
+    let commitsPreSave = null;
+
+    this.buildObjectCommits(map).forEach(element => {
+
+        // Build commitsPreSave
+        if (!commitsPreSave) {
+            commitsPreSave = { repositoryOwner: ownerRepo, repositoryName: nameRepo, repositoryLink: urlComplete, message: `${this.formatDate(element.date)} there were ${element.count} commits`, count: element.count };
+        } else {
+            commitsPreSave.count += element.count;
+            commitsPreSave.message = `${commitsPreSave.message} - ${this.formatDate(element.date)} there were ${element.count} commits`;
+        }
+    });
+
+    mapCommitsPreSave = commitsPreSave;
+}
+
+// Save commits in Api Rest
+function saveCommits() {
+    const url = `${apiRest}/commit`;
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.buildObjectCommitsPreSave(mapCommitsPreSave)),
+    }
+
+    fetch(url, options)
+        .then(response => {
+            if (response.status === 200) return response.json();
+        })
+        .then(json => {
+            console.log(json);
+        });
+}
+
+function buildObjectCommitsPreSave(map) {
+    let mapToReturn = { repositoryOwner: '', repositoryName: '', repositoryLink: '', message: '', count: 0 };
+
+    Object.keys(map).map(element => {
+        mapToReturn[element] = map[element];
+    });
+
+    return mapToReturn;
+}
+
+function goToPageCommitSaves() {
+    window.location.replace("./commit-saves/commit-saves.html");
 }
