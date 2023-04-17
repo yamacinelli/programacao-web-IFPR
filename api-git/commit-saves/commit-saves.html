@@ -2,13 +2,22 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Commit Saves</title>
+    <title>API Git Commits</title>
     <link rel="stylesheet" type="text/css" href="commit-saves.css">
 </head>
 
-<body class="dark-theme">
+<body class="dark-theme" onload="getAllCommitsSaved()">
 <div class="container">
+    <!--Table Commits Saves-->
+    <div class="row">
+        <div class="col-1 center" id="table-commits-saves"></div>
+    </div>
 
+    <div class="row">
+        <div class="col-1 center hide" id="errorCommitsSaved">
+            <span>No commits saved</span>
+        </div>
+    </div>
 </div>
 
 <script src="commit-saves.js"></script>

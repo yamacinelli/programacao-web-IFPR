@@ -54,6 +54,10 @@
     justify-content: center;
 }
 
+.hide {
+    display: none;
+}
+
 input[type=text], input[type=date] {
     background-color: #5b5b66;
     border: 0;
