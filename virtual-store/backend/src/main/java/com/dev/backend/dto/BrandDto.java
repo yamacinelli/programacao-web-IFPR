@@ -11,6 +11,6 @@ public class BrandDto extends AuditableDto {
 
     private Integer id;
 
-    @NotEmpty
+    @NotEmpty(message = "{name.not.empty}")
     private String name;
 }
