@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -11,9 +12,9 @@ public class CityDto extends AuditableDto {
 
     private Integer id;
 
-    @NotEmpty
+    @NotEmpty(message = "{name.not.empty}")
     private String name;
 
-    @NotEmpty
+    @NotNull(message = "{state.not.null}")
     private StateDto stateDto;
 }
