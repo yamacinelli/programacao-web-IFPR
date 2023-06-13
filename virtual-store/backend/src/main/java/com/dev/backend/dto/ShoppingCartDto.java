@@ -3,6 +3,8 @@ package com.dev.backend.dto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +18,8 @@ public class ShoppingCartDto extends AuditableDto {
 
     private String note;
 
+    @NotEmpty
+    @Size(min = 1, max = 2)
     private String situation;
 
     private List<ProductDto> productDtos;
@@ -23,4 +27,7 @@ public class ShoppingCartDto extends AuditableDto {
     private Double amount;
 
     private Integer quantity;
+
+    @NotEmpty
+    private PeopleDto peopleDto;
 }

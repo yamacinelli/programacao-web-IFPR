@@ -28,4 +28,7 @@ public class ShoppingCart extends Auditable {
     private Double amount;
 
     private Integer quantity;
+
+    @OneToOne
+    private People people;
 }
