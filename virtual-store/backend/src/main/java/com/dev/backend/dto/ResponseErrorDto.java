@@ -9,6 +9,8 @@ import java.util.List;
 @AllArgsConstructor
 public class ResponseErrorDto {
 
+    private int errorCode;
+
     private String errorRequest;
 
     private String errorInObject;
