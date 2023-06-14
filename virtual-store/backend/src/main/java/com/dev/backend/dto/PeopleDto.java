@@ -14,21 +14,21 @@ public class PeopleDto extends AuditableDto {
 
     private Integer id;
 
-    @NotEmpty
+    @NotEmpty(message = "{name.not.empty}")
     private String name;
 
-    @CPF
-    @NotEmpty
+    @CPF(message = "{cpf.invalid}")
+    @NotEmpty(message = "{cpf.not.empty}")
     private String cpf;
 
-    @Email
-    @NotEmpty
+    @Email(message = "{email.invalid}")
+    @NotEmpty(message = "{email.not.empty}")
     private String email;
 
     private AddressDto addressDto;
 
     private Integer number;
 
-    @NotEmpty
+    @NotEmpty(message = "{permission.not.empty}")
     private List<PermissionDto> permissionDtos;
 }
