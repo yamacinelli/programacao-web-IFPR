@@ -1,6 +1,6 @@
 package com.dev.backend.controller;
 
-import com.dev.backend.model.Permission;
+import com.dev.backend.dto.PermissionDto;
 import com.dev.backend.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +16,22 @@ public class PermissionController {
     private PermissionService permissionService;
 
     @PostMapping
-    ResponseEntity<Permission> save(@RequestBody Permission model) {
-        return ResponseEntity.ok(permissionService.save(model));
+    ResponseEntity<PermissionDto> save(@RequestBody PermissionDto dto) {
+        return ResponseEntity.ok(permissionService.save(dto));
     }
 
     @PostMapping("/save-all")
-    ResponseEntity<List<Permission>> saveAll(@RequestBody List<Permission> models) {
-        return ResponseEntity.ok(permissionService.saveAll(models));
+    ResponseEntity<List<PermissionDto>> saveAll(@RequestBody List<PermissionDto> dtos) {
+        return ResponseEntity.ok(permissionService.saveAll(dtos));
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Permission> findById(@PathVariable Integer id) {
+    ResponseEntity<PermissionDto> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(permissionService.findById(id));
     }
 
     @GetMapping
-    ResponseEntity<List<Permission>> findAll() {
+    ResponseEntity<List<PermissionDto>> findAll() {
         return ResponseEntity.ok(permissionService.findAll());
     }
 
@@ -41,7 +41,7 @@ public class PermissionController {
     }
 
     @PutMapping
-    ResponseEntity<Permission> update(@RequestBody Permission model) {
-        return ResponseEntity.ok(permissionService.update(model));
+    ResponseEntity<PermissionDto> update(@RequestBody PermissionDto dto) {
+        return ResponseEntity.ok(permissionService.update(dto));
     }
 }
