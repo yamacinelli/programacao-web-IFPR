@@ -1,37 +1,43 @@
 package com.dev.backend.service;
 
+import com.dev.backend.dto.CityDto;
 import com.dev.backend.model.City;
 import com.dev.backend.repository.CityRepository;
 import com.dev.backend.model.GenericModel;
+import com.dev.backend.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CityService implements GenericModel<City> {
+public class CityService implements GenericModel<CityDto> {
 
     @Autowired
     private CityRepository cityRepository;
 
     @Override
-    public City save(City model) {
-        return cityRepository.saveAndFlush(model);
+    public CityDto save(CityDto dto) {
+        return ParseUtils.parse(
+                cityRepository.saveAndFlush(ParseUtils.parse(dto, City.class)),
+                CityDto.class);
     }
 
     @Override
-    public List<City> saveAll(List<City> models) {
-        return cityRepository.saveAllAndFlush(models);
+    public List<CityDto> saveAll(List<CityDto> dtos) {
+        return ParseUtils.parse(
+                cityRepository.saveAllAndFlush(ParseUtils.parse(dtos, City.class)),
+                CityDto.class);
     }
 
     @Override
-    public City findById(Integer id) {
-        return cityRepository.findById(id).orElse(null);
+    public CityDto findById(Integer id) {
+        return ParseUtils.parse(cityRepository.findById(id).orElse(null), CityDto.class);
     }
 
     @Override
-    public List<City> findAll() {
-        return cityRepository.findAll();
+    public List<CityDto> findAll() {
+        return ParseUtils.parse(cityRepository.findAll(), CityDto.class);
     }
 
     @Override
@@ -40,7 +46,9 @@ public class CityService implements GenericModel<City> {
     }
 
     @Override
-    public City update(City model) {
-        return cityRepository.saveAndFlush(model);
+    public CityDto update(CityDto dto) {
+        return ParseUtils.parse(
+                cityRepository.saveAndFlush(ParseUtils.parse(dto, City.class)),
+                CityDto.class);
     }
 }
