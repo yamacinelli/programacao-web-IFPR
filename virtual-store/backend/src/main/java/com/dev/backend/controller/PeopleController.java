@@ -1,6 +1,6 @@
 package com.dev.backend.controller;
 
-import com.dev.backend.model.People;
+import com.dev.backend.dto.PeopleDto;
 import com.dev.backend.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +16,22 @@ public class PeopleController {
     private PeopleService peopleService;
 
     @PostMapping
-    ResponseEntity<People> save(@RequestBody People model) {
-        return ResponseEntity.ok(peopleService.save(model));
+    ResponseEntity<PeopleDto> save(@RequestBody PeopleDto dto) {
+        return ResponseEntity.ok(peopleService.save(dto));
     }
 
     @PostMapping("/save-all")
-    ResponseEntity<List<People>> saveAll(@RequestBody List<People> models) {
-        return ResponseEntity.ok(peopleService.saveAll(models));
+    ResponseEntity<List<PeopleDto>> saveAll(@RequestBody List<PeopleDto> dtos) {
+        return ResponseEntity.ok(peopleService.saveAll(dtos));
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<People> findById(@PathVariable Integer id) {
+    ResponseEntity<PeopleDto> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(peopleService.findById(id));
     }
 
     @GetMapping
-    ResponseEntity<List<People>> findAll() {
+    ResponseEntity<List<PeopleDto>> findAll() {
         return ResponseEntity.ok(peopleService.findAll());
     }
 
@@ -41,7 +41,7 @@ public class PeopleController {
     }
 
     @PutMapping
-    ResponseEntity<People> update(@RequestBody People model) {
-        return ResponseEntity.ok(peopleService.update(model));
+    ResponseEntity<PeopleDto> update(@RequestBody PeopleDto dto) {
+        return ResponseEntity.ok(peopleService.update(dto));
     }
 }

@@ -1,37 +1,43 @@
 package com.dev.backend.service;
 
-import com.dev.backend.model.People;
+import com.dev.backend.dto.PeopleDto;
 import com.dev.backend.model.GenericModel;
+import com.dev.backend.model.People;
 import com.dev.backend.repository.PeopleRepository;
+import com.dev.backend.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class PeopleService implements GenericModel<People> {
+public class PeopleService implements GenericModel<PeopleDto> {
 
     @Autowired
     private PeopleRepository peopleRepository;
 
     @Override
-    public People save(People model) {
-        return peopleRepository.saveAndFlush(model);
+    public PeopleDto save(PeopleDto dto) {
+        return ParseUtils.parse(
+                peopleRepository.saveAndFlush(ParseUtils.parse(dto, People.class)),
+                PeopleDto.class);
     }
 
     @Override
-    public List<People> saveAll(List<People> models) {
-        return peopleRepository.saveAllAndFlush(models);
+    public List<PeopleDto> saveAll(List<PeopleDto> dtos) {
+        return ParseUtils.parse(
+                peopleRepository.saveAllAndFlush(ParseUtils.parse(dtos, People.class)),
+                PeopleDto.class);
     }
 
     @Override
-    public People findById(Integer id) {
-        return peopleRepository.findById(id).orElse(null);
+    public PeopleDto findById(Integer id) {
+        return ParseUtils.parse(peopleRepository.findById(id).orElse(null), PeopleDto.class);
     }
 
     @Override
-    public List<People> findAll() {
-        return peopleRepository.findAll();
+    public List<PeopleDto> findAll() {
+        return ParseUtils.parse(peopleRepository.findAll(), PeopleDto.class);
     }
 
     @Override
@@ -40,7 +46,9 @@ public class PeopleService implements GenericModel<People> {
     }
 
     @Override
-    public People update(People model) {
-        return peopleRepository.saveAndFlush(model);
+    public PeopleDto update(PeopleDto dto) {
+        return ParseUtils.parse(
+                peopleRepository.saveAndFlush(ParseUtils.parse(dto, People.class)),
+                PeopleDto.class);
     }
 }
