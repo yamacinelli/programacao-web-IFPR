@@ -12,10 +12,10 @@ public class StateDto extends AuditableDto {
 
     private Integer id;
 
-    @NotEmpty
+    @NotEmpty(message = "{name.not.empty}")
     private String name;
 
-    @NotEmpty
-    @Size(min = 2, max = 2)
+    @NotEmpty(message = "{abbreviation.not.empty}")
+    @Size(min = 2, max = 2, message = "{abbreviation.size}")
     private String abbreviation;
 }
