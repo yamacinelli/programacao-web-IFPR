@@ -1,37 +1,43 @@
 package com.dev.backend.service;
 
+import com.dev.backend.dto.BrandDto;
 import com.dev.backend.model.Brand;
-import com.dev.backend.repository.BrandRepository;
 import com.dev.backend.model.GenericModel;
+import com.dev.backend.repository.BrandRepository;
+import com.dev.backend.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BrandService implements GenericModel<Brand> {
+public class BrandService implements GenericModel<BrandDto> {
 
     @Autowired
     private BrandRepository brandRepository;
 
     @Override
-    public Brand save(Brand model) {
-        return brandRepository.saveAndFlush(model);
+    public BrandDto save(BrandDto dto) {
+        return ParseUtils.parse(
+                brandRepository.saveAndFlush(ParseUtils.parse(dto, Brand.class)),
+                BrandDto.class);
     }
 
     @Override
-    public List<Brand> saveAll(List<Brand> models) {
-        return brandRepository.saveAllAndFlush(models);
+    public List<BrandDto> saveAll(List<BrandDto> dtos) {
+        return ParseUtils.parse(
+                brandRepository.saveAllAndFlush(ParseUtils.parse(dtos, Brand.class)),
+                BrandDto.class);
     }
 
     @Override
-    public Brand findById(Integer id) {
-        return brandRepository.findById(id).orElse(null);
+    public BrandDto findById(Integer id) {
+        return ParseUtils.parse(brandRepository.findById(id).orElse(null), BrandDto.class);
     }
 
     @Override
-    public List<Brand> findAll() {
-        return brandRepository.findAll();
+    public List<BrandDto> findAll() {
+        return ParseUtils.parse(brandRepository.findAll(), BrandDto.class);
     }
 
     @Override
@@ -40,7 +46,9 @@ public class BrandService implements GenericModel<Brand> {
     }
 
     @Override
-    public Brand update(Brand model) {
-        return brandRepository.saveAndFlush(model);
+    public BrandDto update(BrandDto dto) {
+        return ParseUtils.parse(
+                brandRepository.saveAndFlush(ParseUtils.parse(dto, Brand.class)),
+                BrandDto.class);
     }
 }

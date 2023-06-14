@@ -1,11 +1,12 @@
 package com.dev.backend.controller;
 
-import com.dev.backend.model.Brand;
+import com.dev.backend.dto.BrandDto;
 import com.dev.backend.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,22 +17,22 @@ public class BrandController {
     private BrandService brandService;
 
     @PostMapping
-    ResponseEntity<Brand> save(@RequestBody Brand model) {
-        return ResponseEntity.ok(brandService.save(model));
+    ResponseEntity<BrandDto> save(@Valid @RequestBody BrandDto dto) {
+        return ResponseEntity.ok(brandService.save(dto));
     }
 
     @PostMapping("/save-all")
-    ResponseEntity<List<Brand>> saveAll(@RequestBody List<Brand> models) {
-        return ResponseEntity.ok(brandService.saveAll(models));
+    ResponseEntity<List<BrandDto>> saveAll(@Valid @RequestBody List<BrandDto> dtos) {
+        return ResponseEntity.ok(brandService.saveAll(dtos));
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Brand> findById(@PathVariable Integer id) {
+    ResponseEntity<BrandDto> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(brandService.findById(id));
     }
 
     @GetMapping
-    ResponseEntity<List<Brand>> findAll() {
+    ResponseEntity<List<BrandDto>> findAll() {
         return ResponseEntity.ok(brandService.findAll());
     }
 
@@ -41,7 +42,7 @@ public class BrandController {
     }
 
     @PutMapping
-    ResponseEntity<Brand> update(@RequestBody Brand model) {
-        return ResponseEntity.ok(brandService.update(model));
+    ResponseEntity<BrandDto> update(@Valid @RequestBody BrandDto dto) {
+        return ResponseEntity.ok(brandService.update(dto));
     }
 }
