@@ -15,7 +15,14 @@ public class ExceptionHandling {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body("Exclusion is not possible, there was a violation of foreign key.");
+        } else if (e.getMostSpecificCause().toString().contains("PRIMARY KEY")) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Exclusion is not possible, there was a violation of primary key.");
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Exclusion is not possible, there was a violation in data.");
         }
-        return null;
     }
 }
