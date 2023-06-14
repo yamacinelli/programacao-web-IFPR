@@ -1,5 +1,6 @@
 package com.dev.backend.controller;
 
+import com.dev.backend.dto.ImageDto;
 import com.dev.backend.model.Image;
 import com.dev.backend.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +17,22 @@ public class ImageController {
     private ImageService ImageService;
 
     @PostMapping
-    ResponseEntity<Image> save(@RequestBody Image model) {
-        return ResponseEntity.ok(ImageService.save(model));
+    ResponseEntity<ImageDto> save(@RequestBody ImageDto dto) {
+        return ResponseEntity.ok(ImageService.save(dto));
     }
 
     @PostMapping("/save-all")
-    ResponseEntity<List<Image>> saveAll(@RequestBody List<Image> models) {
-        return ResponseEntity.ok(ImageService.saveAll(models));
+    ResponseEntity<List<ImageDto>> saveAll(@RequestBody List<ImageDto> dtos) {
+        return ResponseEntity.ok(ImageService.saveAll(dtos));
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Image> findById(@PathVariable Integer id) {
+    ResponseEntity<ImageDto> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(ImageService.findById(id));
     }
 
     @GetMapping
-    ResponseEntity<List<Image>> findAll() {
+    ResponseEntity<List<ImageDto>> findAll() {
         return ResponseEntity.ok(ImageService.findAll());
     }
 
@@ -41,7 +42,7 @@ public class ImageController {
     }
 
     @PutMapping
-    ResponseEntity<Image> update(@RequestBody Image model) {
-        return ResponseEntity.ok(ImageService.update(model));
+    ResponseEntity<ImageDto> update(@RequestBody ImageDto dto) {
+        return ResponseEntity.ok(ImageService.update(dto));
     }
 }

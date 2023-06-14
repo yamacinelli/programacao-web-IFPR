@@ -1,37 +1,43 @@
 package com.dev.backend.service;
 
+import com.dev.backend.dto.ImageDto;
 import com.dev.backend.model.Image;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.repository.ImageRepository;
+import com.dev.backend.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ImageService implements GenericModel<Image> {
+public class ImageService implements GenericModel<ImageDto> {
 
     @Autowired
     private ImageRepository imageRepository;
 
     @Override
-    public Image save(Image model) {
-        return imageRepository.saveAndFlush(model);
+    public ImageDto save(ImageDto dto) {
+        return ParseUtils.parse(
+                imageRepository.saveAndFlush(ParseUtils.parse(dto, Image.class)),
+                ImageDto.class);
     }
 
     @Override
-    public List<Image> saveAll(List<Image> models) {
-        return imageRepository.saveAllAndFlush(models);
+    public List<ImageDto> saveAll(List<ImageDto> dtos) {
+        return ParseUtils.parse(
+                imageRepository.saveAllAndFlush(ParseUtils.parse(dtos, Image.class)),
+                ImageDto.class);
     }
 
     @Override
-    public Image findById(Integer id) {
-        return imageRepository.findById(id).orElse(null);
+    public ImageDto findById(Integer id) {
+        return ParseUtils.parse(imageRepository.findById(id).orElse(null), ImageDto.class);
     }
 
     @Override
-    public List<Image> findAll() {
-        return imageRepository.findAll();
+    public List<ImageDto> findAll() {
+        return ParseUtils.parse(imageRepository.findAll(), ImageDto.class);
     }
 
     @Override
@@ -40,7 +46,9 @@ public class ImageService implements GenericModel<Image> {
     }
 
     @Override
-    public Image update(Image model) {
-        return imageRepository.saveAndFlush(model);
+    public ImageDto update(ImageDto dto) {
+        return ParseUtils.parse(
+                imageRepository.saveAndFlush(ParseUtils.parse(dto, Image.class)),
+                ImageDto.class);
     }
 }
