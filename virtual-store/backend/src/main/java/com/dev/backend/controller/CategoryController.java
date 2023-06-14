@@ -1,5 +1,6 @@
 package com.dev.backend.controller;
 
+import com.dev.backend.dto.CategoryDto;
 import com.dev.backend.model.Category;
 import com.dev.backend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +17,22 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping
-    ResponseEntity<Category> save(@RequestBody Category model) {
-        return ResponseEntity.ok(categoryService.save(model));
+    ResponseEntity<CategoryDto> save(@RequestBody CategoryDto dto) {
+        return ResponseEntity.ok(categoryService.save(dto));
     }
 
     @PostMapping("/save-all")
-    ResponseEntity<List<Category>> saveAll(@RequestBody List<Category> models) {
-        return ResponseEntity.ok(categoryService.saveAll(models));
+    ResponseEntity<List<CategoryDto>> saveAll(@RequestBody List<CategoryDto> dtos) {
+        return ResponseEntity.ok(categoryService.saveAll(dtos));
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Category> findById(@PathVariable Integer id) {
+    ResponseEntity<CategoryDto> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(categoryService.findById(id));
     }
 
     @GetMapping
-    ResponseEntity<List<Category>> findAll() {
+    ResponseEntity<List<CategoryDto>> findAll() {
         return ResponseEntity.ok(categoryService.findAll());
     }
 
@@ -41,7 +42,7 @@ public class CategoryController {
     }
 
     @PutMapping
-    ResponseEntity<Category> update(@RequestBody Category model) {
-        return ResponseEntity.ok(categoryService.update(model));
+    ResponseEntity<CategoryDto> update(@RequestBody CategoryDto dto) {
+        return ResponseEntity.ok(categoryService.update(dto));
     }
 }

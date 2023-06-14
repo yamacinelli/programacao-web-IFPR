@@ -1,37 +1,43 @@
 package com.dev.backend.service;
 
+import com.dev.backend.dto.CategoryDto;
 import com.dev.backend.model.Category;
 import com.dev.backend.repository.CategoryRepository;
 import com.dev.backend.model.GenericModel;
+import com.dev.backend.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CategoryService implements GenericModel<Category> {
+public class CategoryService implements GenericModel<CategoryDto> {
 
     @Autowired
     private CategoryRepository categoryRepository;
 
     @Override
-    public Category save(Category model) {
-        return categoryRepository.saveAndFlush(model);
+    public CategoryDto save(CategoryDto dto) {
+        return ParseUtils.parse(
+                categoryRepository.saveAndFlush(ParseUtils.parse(dto, Category.class)),
+                CategoryDto.class);
     }
 
     @Override
-    public List<Category> saveAll(List<Category> models) {
-        return categoryRepository.saveAllAndFlush(models);
+    public List<CategoryDto> saveAll(List<CategoryDto> dtos) {
+        return ParseUtils.parse(
+                categoryRepository.saveAllAndFlush(ParseUtils.parse(dtos, Category.class)),
+                CategoryDto.class);
     }
 
     @Override
-    public Category findById(Integer id) {
-        return categoryRepository.findById(id).orElse(null);
+    public CategoryDto findById(Integer id) {
+        return ParseUtils.parse(categoryRepository.findById(id).orElse(null), CategoryDto.class);
     }
 
     @Override
-    public List<Category> findAll() {
-        return categoryRepository.findAll();
+    public List<CategoryDto> findAll() {
+        return ParseUtils.parse(categoryRepository.findAll(), CategoryDto.class);
     }
 
     @Override
@@ -40,7 +46,9 @@ public class CategoryService implements GenericModel<Category> {
     }
 
     @Override
-    public Category update(Category model) {
-        return categoryRepository.saveAndFlush(model);
+    public CategoryDto update(CategoryDto dto) {
+        return ParseUtils.parse(
+                categoryRepository.saveAndFlush(ParseUtils.parse(dto, Category.class)),
+                CategoryDto.class);
     }
 }
