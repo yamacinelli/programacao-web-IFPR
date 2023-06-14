@@ -1,6 +1,6 @@
 package com.dev.backend.controller;
 
-import com.dev.backend.model.ShoppingCart;
+import com.dev.backend.dto.ShoppingCartDto;
 import com.dev.backend.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +16,22 @@ public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
 
     @PostMapping
-    ResponseEntity<ShoppingCart> save(@RequestBody ShoppingCart model) {
-        return ResponseEntity.ok(shoppingCartService.save(model));
+    ResponseEntity<ShoppingCartDto> save(@RequestBody ShoppingCartDto dto) {
+        return ResponseEntity.ok(shoppingCartService.save(dto));
     }
 
     @PostMapping("/save-all")
-    ResponseEntity<List<ShoppingCart>> saveAll(@RequestBody List<ShoppingCart> models) {
-        return ResponseEntity.ok(shoppingCartService.saveAll(models));
+    ResponseEntity<List<ShoppingCartDto>> saveAll(@RequestBody List<ShoppingCartDto> dtos) {
+        return ResponseEntity.ok(shoppingCartService.saveAll(dtos));
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<ShoppingCart> findById(@PathVariable Integer id) {
+    ResponseEntity<ShoppingCartDto> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(shoppingCartService.findById(id));
     }
 
     @GetMapping
-    ResponseEntity<List<ShoppingCart>> findAll() {
+    ResponseEntity<List<ShoppingCartDto>> findAll() {
         return ResponseEntity.ok(shoppingCartService.findAll());
     }
 
@@ -41,7 +41,7 @@ public class ShoppingCartController {
     }
 
     @PutMapping
-    ResponseEntity<ShoppingCart> update(@RequestBody ShoppingCart model) {
-        return ResponseEntity.ok(shoppingCartService.update(model));
+    ResponseEntity<ShoppingCartDto> update(@RequestBody ShoppingCartDto dto) {
+        return ResponseEntity.ok(shoppingCartService.update(dto));
     }
 }
