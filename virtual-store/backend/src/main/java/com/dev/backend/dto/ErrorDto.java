@@ -1,8 +1,10 @@
 package com.dev.backend.dto;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@Data
+@Getter
+@AllArgsConstructor
 public class ErrorDto {
 
     private String errorMessage;
