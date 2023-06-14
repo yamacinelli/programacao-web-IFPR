@@ -1,6 +1,6 @@
 package com.dev.backend.controller;
 
-import com.dev.backend.model.Product;
+import com.dev.backend.dto.ProductDto;
 import com.dev.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +16,22 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    ResponseEntity<Product> save(@RequestBody Product model) {
-        return ResponseEntity.ok(productService.save(model));
+    ResponseEntity<ProductDto> save(@RequestBody ProductDto dto) {
+        return ResponseEntity.ok(productService.save(dto));
     }
 
     @PostMapping("/save-all")
-    ResponseEntity<List<Product>> saveAll(@RequestBody List<Product> models) {
-        return ResponseEntity.ok(productService.saveAll(models));
+    ResponseEntity<List<ProductDto>> saveAll(@RequestBody List<ProductDto> dtos) {
+        return ResponseEntity.ok(productService.saveAll(dtos));
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Product> findById(@PathVariable Integer id) {
+    ResponseEntity<ProductDto> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(productService.findById(id));
     }
 
     @GetMapping
-    ResponseEntity<List<Product>> findAll() {
+    ResponseEntity<List<ProductDto>> findAll() {
         return ResponseEntity.ok(productService.findAll());
     }
 
@@ -41,7 +41,7 @@ public class ProductController {
     }
 
     @PutMapping
-    ResponseEntity<Product> update(@RequestBody Product model) {
-        return ResponseEntity.ok(productService.update(model));
+    ResponseEntity<ProductDto> update(@RequestBody ProductDto dto) {
+        return ResponseEntity.ok(productService.update(dto));
     }
 }
