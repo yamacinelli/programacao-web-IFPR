@@ -1,37 +1,43 @@
 package com.dev.backend.service;
 
+import com.dev.backend.dto.AddressDto;
 import com.dev.backend.model.Address;
-import com.dev.backend.repository.AddressRepository;
 import com.dev.backend.model.GenericModel;
+import com.dev.backend.repository.AddressRepository;
+import com.dev.backend.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AddressService implements GenericModel<Address> {
+public class AddressService implements GenericModel<AddressDto> {
 
     @Autowired
     private AddressRepository addressRepository;
 
     @Override
-    public Address save(Address model) {
-        return addressRepository.saveAndFlush(model);
+    public AddressDto save(AddressDto dto) {
+        return ParseUtils.parse(
+                addressRepository.saveAndFlush(ParseUtils.parse(dto, Address.class)),
+                AddressDto.class);
     }
 
     @Override
-    public List<Address> saveAll(List<Address> models) {
-        return addressRepository.saveAllAndFlush(models);
+    public List<AddressDto> saveAll(List<AddressDto> dtos) {
+        return ParseUtils.parse(
+                addressRepository.saveAllAndFlush(ParseUtils.parse(dtos, Address.class)),
+                AddressDto.class);
     }
 
     @Override
-    public Address findById(Integer id) {
-        return addressRepository.findById(id).orElse(null);
+    public AddressDto findById(Integer id) {
+        return ParseUtils.parse(addressRepository.findById(id).orElse(null), AddressDto.class);
     }
 
     @Override
-    public List<Address> findAll() {
-        return addressRepository.findAll();
+    public List<AddressDto> findAll() {
+        return ParseUtils.parse(addressRepository.findAll(), AddressDto.class);
     }
 
     @Override
@@ -40,7 +46,9 @@ public class AddressService implements GenericModel<Address> {
     }
 
     @Override
-    public Address update(Address model) {
-        return addressRepository.saveAndFlush(model);
+    public AddressDto update(AddressDto dto) {
+        return ParseUtils.parse(
+                addressRepository.saveAndFlush(ParseUtils.parse(dto, Address.class)),
+                AddressDto.class);
     }
 }

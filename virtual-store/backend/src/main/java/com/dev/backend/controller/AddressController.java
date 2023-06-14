@@ -1,6 +1,6 @@
 package com.dev.backend.controller;
 
-import com.dev.backend.model.Address;
+import com.dev.backend.dto.AddressDto;
 import com.dev.backend.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +16,22 @@ public class AddressController {
     private AddressService addressService;
 
     @PostMapping
-    ResponseEntity<Address> save(@RequestBody Address model) {
-        return ResponseEntity.ok(addressService.save(model));
+    ResponseEntity<AddressDto> save(@RequestBody AddressDto dto) {
+        return ResponseEntity.ok(addressService.save(dto));
     }
 
     @PostMapping("/save-all")
-    ResponseEntity<List<Address>> saveAll(@RequestBody List<Address> models) {
-        return ResponseEntity.ok(addressService.saveAll(models));
+    ResponseEntity<List<AddressDto>> saveAll(@RequestBody List<AddressDto> dtos) {
+        return ResponseEntity.ok(addressService.saveAll(dtos));
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Address> findById(@PathVariable Integer id) {
+    ResponseEntity<AddressDto> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(addressService.findById(id));
     }
 
     @GetMapping
-    ResponseEntity<List<Address>> findAll() {
+    ResponseEntity<List<AddressDto>> findAll() {
         return ResponseEntity.ok(addressService.findAll());
     }
 
@@ -41,7 +41,7 @@ public class AddressController {
     }
 
     @PutMapping
-    ResponseEntity<Address> update(@RequestBody Address model) {
-        return ResponseEntity.ok(addressService.update(model));
+    ResponseEntity<AddressDto> update(@RequestBody AddressDto dto) {
+        return ResponseEntity.ok(addressService.update(dto));
     }
 }
