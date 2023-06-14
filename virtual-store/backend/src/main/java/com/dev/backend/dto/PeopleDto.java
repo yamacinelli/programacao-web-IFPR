@@ -17,11 +17,11 @@ public class PeopleDto extends AuditableDto {
     @NotEmpty(message = "{name.not.empty}")
     private String name;
 
-    @CPF(message = "{cpf.invalid}")
+    @CPF(message = "{cpf}")
     @NotEmpty(message = "{cpf.not.empty}")
     private String cpf;
 
-    @Email(message = "{email.invalid}")
+    @Email(message = "{email}")
     @NotEmpty(message = "{email.not.empty}")
     private String email;
 

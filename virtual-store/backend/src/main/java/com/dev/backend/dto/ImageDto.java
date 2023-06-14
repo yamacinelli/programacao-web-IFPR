@@ -12,7 +12,7 @@ public class ImageDto extends AuditableDto {
 
     private Integer id;
 
-    @URL(message = "{url.invalid}")
+    @URL(message = "{url}")
     @NotEmpty(message = "{url.not.empty}")
     private String url;
 }

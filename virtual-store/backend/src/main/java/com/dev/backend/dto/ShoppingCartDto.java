@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +19,8 @@ public class ShoppingCartDto extends AuditableDto {
 
     private String note;
 
-    @NotEmpty
-    @Size(min = 1, max = 2)
+    @NotEmpty(message = "{situation.not.empty}")
+    @Size(min = 1, max = 2, message = "{situation.size}")
     private String situation;
 
     private List<ProductDto> productDtos;
@@ -28,6 +29,6 @@ public class ShoppingCartDto extends AuditableDto {
 
     private Integer quantity;
 
-    @NotEmpty
+    @NotNull(message = "{people.not.null}")
     private PeopleDto peopleDto;
 }

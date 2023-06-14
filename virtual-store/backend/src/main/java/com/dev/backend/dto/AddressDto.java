@@ -20,7 +20,7 @@ public class AddressDto extends AuditableDto {
     private String district;
 
     @NotEmpty(message = "{cep.not.empty}")
-    @Pattern(regexp = "\\d{5}-\\d{3}", message = "{cep.pattern}")
+    @Pattern(regexp = "\\d{5}-\\d{3}", message = "{cep}")
     private String cep;
 
     @NotNull(message = "{city.not.null}")
