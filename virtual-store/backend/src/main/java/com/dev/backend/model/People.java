@@ -23,7 +23,7 @@ public class People extends Auditable {
     @Column(unique = true)
     private String email;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
 
     private Integer number;
