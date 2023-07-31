@@ -25,7 +25,7 @@ public class PeopleDto extends AuditableDto {
     @NotEmpty(message = "{email.not.empty}")
     private String email;
 
-    private AddressDto addressDto;
+    private AddressDto address;
 
     private Integer number;
 
