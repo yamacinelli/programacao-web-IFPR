@@ -30,5 +30,5 @@ public class PeopleDto extends AuditableDto {
     private Integer number;
 
     @NotEmpty(message = "{permission.not.empty}")
-    private List<PermissionDto> permissionDtos;
+    private List<PermissionDto> permission;
 }
