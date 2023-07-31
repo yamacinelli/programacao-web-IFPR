@@ -1,37 +1,43 @@
 package com.dev.backend.service;
 
+import com.dev.backend.dto.StateDto;
 import com.dev.backend.model.State;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.repository.StateRepository;
+import com.dev.backend.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class StateService implements GenericModel<State> {
+public class StateService implements GenericModel<StateDto> {
 
     @Autowired
     private StateRepository stateRepository;
 
     @Override
-    public State save(State model) {
-        return stateRepository.saveAndFlush(model);
+    public StateDto save(StateDto dto) {
+        return ParseUtils.parse(
+                stateRepository.saveAndFlush(ParseUtils.parse(dto, State.class)),
+                StateDto.class);
     }
 
     @Override
-    public List<State> saveAll(List<State> models) {
-        return stateRepository.saveAllAndFlush(models);
+    public List<StateDto> saveAll(List<StateDto> dtos) {
+        return ParseUtils.parse(
+                stateRepository.saveAllAndFlush(ParseUtils.parse(dtos, State.class)),
+                StateDto.class);
     }
 
     @Override
-    public State findById(Integer id) {
-        return stateRepository.findById(id).orElse(null);
+    public StateDto findById(Integer id) {
+        return ParseUtils.parse(stateRepository.findById(id).orElse(null), StateDto.class);
     }
 
     @Override
-    public List<State> findAll() {
-        return stateRepository.findAll();
+    public List<StateDto> findAll() {
+        return ParseUtils.parse(stateRepository.findAll(), StateDto.class);
     }
 
     @Override
@@ -40,7 +46,9 @@ public class StateService implements GenericModel<State> {
     }
 
     @Override
-    public State update(State model) {
-        return stateRepository.saveAndFlush(model);
+    public StateDto update(StateDto dto) {
+        return ParseUtils.parse(
+                stateRepository.saveAndFlush(ParseUtils.parse(dto, State.class)),
+                StateDto.class);
     }
 }
