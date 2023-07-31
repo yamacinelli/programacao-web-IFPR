@@ -28,6 +28,6 @@ public class People extends Auditable {
 
     private Integer number;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Permission> permission;
 }
