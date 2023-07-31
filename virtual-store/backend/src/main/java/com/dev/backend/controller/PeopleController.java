@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/people")
@@ -33,6 +34,11 @@ public class PeopleController {
     @GetMapping
     ResponseEntity<List<PeopleDto>> findAll() {
         return ResponseEntity.ok(peopleService.findAll());
+    }
+
+    @GetMapping("/find_all_by")
+    ResponseEntity<List<PeopleDto>> findAllByCity(@RequestParam("params") Map<String, Integer> params) {
+        return ResponseEntity.ok(peopleService.findAllBy(params));
     }
 
     @DeleteMapping("/{id}")

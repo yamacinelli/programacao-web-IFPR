@@ -20,6 +20,6 @@ public class Address extends Auditable {
 
     private String cep;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private City city;
 }
