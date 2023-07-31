@@ -16,5 +16,5 @@ public class CityDto extends AuditableDto {
     private String name;
 
     @NotNull(message = "{state.not.null}")
-    private StateDto stateDto;
+    private StateDto state;
 }

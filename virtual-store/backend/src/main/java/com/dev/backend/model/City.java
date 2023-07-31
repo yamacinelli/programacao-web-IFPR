@@ -16,6 +16,6 @@ public class City extends Auditable {
 
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private State state;
 }
