@@ -24,5 +24,5 @@ public class AddressDto extends AuditableDto {
     private String cep;
 
     @NotNull(message = "{city.not.null}")
-    private CityDto cityDto;
+    private CityDto city;
 }
