@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,13 +33,8 @@ public class PeopleController {
     }
 
     @GetMapping
-    ResponseEntity<List<PeopleDto>> findAll() {
-        return ResponseEntity.ok(peopleService.findAll());
-    }
-
-    @GetMapping("/find_all_by")
-    ResponseEntity<List<PeopleDto>> findAllByCity(@RequestParam("params") Map<String, Integer> params) {
-        return ResponseEntity.ok(peopleService.findAllBy(params));
+    ResponseEntity<List<PeopleDto>> findAll(@RequestParam(required = false) Integer city, @RequestParam(required = false) Integer permission) {
+        return ResponseEntity.ok(peopleService.findAllBy(city, permission));
     }
 
     @DeleteMapping("/{id}")

@@ -1,19 +1,19 @@
 package com.dev.backend.service;
 
 import com.dev.backend.dto.PeopleDto;
-import com.dev.backend.model.Address;
-import com.dev.backend.model.GenericModel;
-import com.dev.backend.model.People;
+import com.dev.backend.model.*;
 import com.dev.backend.repository.PeopleRepository;
 import com.dev.backend.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PeopleService implements GenericModel<PeopleDto> {
@@ -48,26 +48,30 @@ public class PeopleService implements GenericModel<PeopleDto> {
         return ParseUtils.parse(peopleRepository.findAll(), PeopleDto.class);
     }
 
-    public List<PeopleDto> findAllBy(Map<String, Integer> params) {
+    public List<PeopleDto> findAllBy(Integer cityId, Integer permissionId) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<People> criteriaQuery = criteriaBuilder.createQuery(People.class);
         Root<People> root = criteriaQuery.from(People.class);
 
         List<Predicate> predicates = new ArrayList<>();
-        if (params.containsKey("city")) {
-            Predicate city = criteriaBuilder.equal(root.get("city"), params.get("city"));
+        if (cityId != null) {
+            Join<People, Address> joinAddress = root.join("address");
+            Predicate city = criteriaBuilder.equal(joinAddress.get("city"), cityId);
             predicates.add(city);
         }
-        if (params.containsKey("permission")) {
-            Join<People, Address> join = root.join("address");
-            Predicate permission = criteriaBuilder.equal(join.get("id"), params.get("permission"));
+        if (permissionId != null) {
+            Join<People, Permission> joinPermission = root.join("permission");
+            Predicate permission = criteriaBuilder.equal(joinPermission.get("id"), permissionId);
             predicates.add(permission);
         }
-        criteriaQuery.multiselect(root.get("id"), root.get("name"), root.get("cpf"), root.get("email"));
+        criteriaQuery.multiselect(root.get("id"), root.get("name"), root.get("cpf"), root.get("email"))
+                .where(predicates.toArray(new Predicate[0]))
+                .distinct(true);
 
-        List<People> queryPeople = entityManager.createQuery(criteriaQuery).getResultList();
+        TypedQuery<People> typedQuery = entityManager.createQuery(criteriaQuery);
+        List<People> queryResult = typedQuery.getResultList();
 
-        return ParseUtils.parse(queryPeople, PeopleDto.class);
+        return ParseUtils.parse(queryResult, PeopleDto.class);
     }
 
     @Override
