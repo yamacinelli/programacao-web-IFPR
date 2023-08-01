@@ -16,8 +16,18 @@ public class CityService implements GenericModel<CityDto> {
     @Autowired
     private CityRepository cityRepository;
 
+    @Autowired
+    private StateService stateService;
+
     @Override
     public CityDto save(CityDto dto) {
+        // Save State
+        dto.setState(stateService.save(dto.getState()));
+        // Save City
+        CityDto cityDto = findByNameAndStateAbbreviation(dto.getName(), dto.getState().getAbbreviation());
+        if (cityDto != null) {
+            return cityDto;
+        }
         return ParseUtils.parse(
                 cityRepository.saveAndFlush(ParseUtils.parse(dto, City.class)),
                 CityDto.class);
@@ -49,6 +59,12 @@ public class CityService implements GenericModel<CityDto> {
     public CityDto update(CityDto dto) {
         return ParseUtils.parse(
                 cityRepository.saveAndFlush(ParseUtils.parse(dto, City.class)),
+                CityDto.class);
+    }
+
+    public CityDto findByNameAndStateAbbreviation(String name, String stateAbbreviation) {
+        return ParseUtils.parse(
+                cityRepository.findByNameAndStateAbbreviation(name, stateAbbreviation),
                 CityDto.class);
     }
 }

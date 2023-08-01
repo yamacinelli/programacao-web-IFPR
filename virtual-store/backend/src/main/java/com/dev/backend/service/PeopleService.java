@@ -1,5 +1,6 @@
 package com.dev.backend.service;
 
+import com.dev.backend.dto.AddressDto;
 import com.dev.backend.dto.PeopleDto;
 import com.dev.backend.model.*;
 import com.dev.backend.repository.PeopleRepository;
@@ -24,8 +25,14 @@ public class PeopleService implements GenericModel<PeopleDto> {
     @Autowired
     private PeopleRepository peopleRepository;
 
+    @Autowired
+    private AddressService addressService;
+
     @Override
     public PeopleDto save(PeopleDto dto) {
+        // Save Address
+        dto.setAddress(addressService.save(dto.getAddress()));
+        // Save People
         return ParseUtils.parse(
                 peopleRepository.saveAndFlush(ParseUtils.parse(dto, People.class)),
                 PeopleDto.class);

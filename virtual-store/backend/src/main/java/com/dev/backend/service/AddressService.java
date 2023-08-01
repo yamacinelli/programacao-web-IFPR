@@ -1,6 +1,7 @@
 package com.dev.backend.service;
 
 import com.dev.backend.dto.AddressDto;
+import com.dev.backend.dto.CityDto;
 import com.dev.backend.model.Address;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.repository.AddressRepository;
@@ -16,8 +17,18 @@ public class AddressService implements GenericModel<AddressDto> {
     @Autowired
     private AddressRepository addressRepository;
 
+    @Autowired
+    private CityService cityService;
+
     @Override
     public AddressDto save(AddressDto dto) {
+        // Save City
+        dto.setCity(cityService.save(dto.getCity()));
+        // Save Address
+        AddressDto addressDto = findByStreetAndDistrictAndCepAndCityName(dto.getStreet(), dto.getDistrict(), dto.getCep(), dto.getCity().getName());
+        if (addressDto != null) {
+            return addressDto;
+        }
         return ParseUtils.parse(
                 addressRepository.saveAndFlush(ParseUtils.parse(dto, Address.class)),
                 AddressDto.class);
@@ -50,5 +61,9 @@ public class AddressService implements GenericModel<AddressDto> {
         return ParseUtils.parse(
                 addressRepository.saveAndFlush(ParseUtils.parse(dto, Address.class)),
                 AddressDto.class);
+    }
+
+    public AddressDto findByStreetAndDistrictAndCepAndCityName(String street, String district, String cep, String cityName) {
+        return ParseUtils.parse(addressRepository.findByStreetAndDistrictAndCepAndCityName(street, district, cep, cityName), AddressDto.class);
     }
 }

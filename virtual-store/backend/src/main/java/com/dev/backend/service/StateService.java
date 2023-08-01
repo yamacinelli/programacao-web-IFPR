@@ -18,6 +18,10 @@ public class StateService implements GenericModel<StateDto> {
 
     @Override
     public StateDto save(StateDto dto) {
+        StateDto stateDto = findByNameAndAbbreviation(dto.getName(), dto.getAbbreviation());
+        if (stateDto != null) {
+            return stateDto;
+        }
         return ParseUtils.parse(
                 stateRepository.saveAndFlush(ParseUtils.parse(dto, State.class)),
                 StateDto.class);
@@ -49,6 +53,12 @@ public class StateService implements GenericModel<StateDto> {
     public StateDto update(StateDto dto) {
         return ParseUtils.parse(
                 stateRepository.saveAndFlush(ParseUtils.parse(dto, State.class)),
+                StateDto.class);
+    }
+
+    public StateDto findByNameAndAbbreviation(String name, String abbreviation) {
+        return ParseUtils.parse(
+                stateRepository.findByNameAndAbbreviation(name, abbreviation),
                 StateDto.class);
     }
 }
