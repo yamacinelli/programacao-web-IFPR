@@ -16,6 +16,7 @@ public class Product extends Auditable {
 
     private String name;
 
+    @Lob
     private String shortDescription;
 
     @Lob

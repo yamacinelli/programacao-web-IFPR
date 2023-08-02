@@ -21,7 +21,10 @@ public class ProductDto extends AuditableDto {
     private String detailedDescription;
 
     @NotNull(message = "{brand.not.null}")
-    private BrandDto brandDto;
+    private BrandDto brand;
+
+    @NotNull(message = "{category.not.null}")
+    private CategoryDto category;
 
     @NotEmpty(message = "{cost.value.not.empty}")
     private Double costValue;
@@ -29,5 +32,5 @@ public class ProductDto extends AuditableDto {
     @NotEmpty(message = "{sale.value.not.empty}")
     private Double saleValue;
 
-    private ImageDto imageDto;
+    private ImageDto image;
 }
