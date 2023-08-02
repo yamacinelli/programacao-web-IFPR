@@ -15,5 +15,6 @@ public class Image extends Auditable {
     private Integer id;
 
     @Lob
+    @Column(unique = true)
     private String url;
 }
