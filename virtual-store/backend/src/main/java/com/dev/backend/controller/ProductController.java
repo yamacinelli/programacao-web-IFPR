@@ -31,8 +31,8 @@ public class ProductController {
     }
 
     @GetMapping
-    ResponseEntity<List<ProductDto>> findAll() {
-        return ResponseEntity.ok(productService.findAll());
+    ResponseEntity<List<ProductDto>> findAll(@RequestParam(required = false) Integer brand, @RequestParam(required = false) Integer category) {
+        return ResponseEntity.ok(productService.findAllBy(brand, category));
     }
 
     @DeleteMapping("/{id}")

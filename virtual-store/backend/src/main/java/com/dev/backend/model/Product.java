@@ -24,6 +24,9 @@ public class Product extends Auditable {
     @ManyToOne
     private Brand brand;
 
+    @ManyToOne
+    private Category category;
+
     private Double costValue;
 
     private Double saleValue;
