@@ -59,12 +59,12 @@ public class ProductService implements GenericModel<ProductDto> {
 
         List<Predicate> predicates = new ArrayList<>();
         if (brandId != null) {
-            Predicate brand = criteriaBuilder.equal(root.get("brand"), brandId);
-            predicates.add(brand);
+            Predicate brandEqual = criteriaBuilder.equal(root.get("brand"), brandId);
+            predicates.add(brandEqual);
         }
         if (categoryId != null) {
-            Predicate category = criteriaBuilder.equal(root.get("category"), categoryId);
-            predicates.add(category);
+            Predicate categoryEqual = criteriaBuilder.equal(root.get("category"), categoryId);
+            predicates.add(categoryEqual);
         }
         criteriaQuery.where(predicates.toArray(new Predicate[0]))
                 .distinct(true);

@@ -62,14 +62,14 @@ public class PeopleService implements GenericModel<PeopleDto> {
 
         List<Predicate> predicates = new ArrayList<>();
         if (cityId != null) {
-            Join<People, Address> joinAddress = root.join("address");
-            Predicate city = criteriaBuilder.equal(joinAddress.get("city"), cityId);
-            predicates.add(city);
+            Join<People, Address> addressJoin = root.join("address");
+            Predicate cityEqual = criteriaBuilder.equal(addressJoin.get("city"), cityId);
+            predicates.add(cityEqual);
         }
         if (permissionId != null) {
-            Join<People, Permission> joinPermission = root.join("permission");
-            Predicate permission = criteriaBuilder.equal(joinPermission.get("id"), permissionId);
-            predicates.add(permission);
+            Join<People, Permission> permissionJoin = root.join("permission");
+            Predicate permissionEqual = criteriaBuilder.equal(permissionJoin.get("id"), permissionId);
+            predicates.add(permissionEqual);
         }
         criteriaQuery.multiselect(root.get("id"), root.get("name"), root.get("cpf"), root.get("email"))
                 .where(predicates.toArray(new Predicate[0]))
