@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -31,8 +32,9 @@ public class ShoppingCartController {
     }
 
     @GetMapping
-    ResponseEntity<List<ShoppingCartDto>> findAll() {
-        return ResponseEntity.ok(shoppingCartService.findAll());
+    ResponseEntity<List<ShoppingCartDto>> findAll(@RequestParam(required = false) Integer people, @RequestParam(required = false) Date start,
+                                                  @RequestParam(required = false) Date end, @RequestParam(required = false) String situation) {
+        return ResponseEntity.ok(shoppingCartService.findAllBy(people, start, end, situation));
     }
 
     @DeleteMapping("/{id}")
