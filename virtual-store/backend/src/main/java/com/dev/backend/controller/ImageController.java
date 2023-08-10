@@ -2,7 +2,6 @@ package com.dev.backend.controller;
 
 import com.dev.backend.dto.ImageDto;
 import com.dev.backend.service.ImageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping("/image")
 public class ImageController {
 
-    @Autowired
-    private ImageService ImageService;
+    private final ImageService ImageService;
+
+    public ImageController(com.dev.backend.service.ImageService imageService) {
+        ImageService = imageService;
+    }
 
     @PostMapping
     ResponseEntity<ImageDto> save(@RequestBody ImageDto dto) {

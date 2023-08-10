@@ -5,7 +5,6 @@ import com.dev.backend.model.Image;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.repository.ImageRepository;
 import com.dev.backend.utils.ParseUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.List;
 @Service
 public class ImageService implements GenericModel<ImageDto> {
 
-    @Autowired
-    private ImageRepository imageRepository;
+    private final ImageRepository imageRepository;
+
+    public ImageService(ImageRepository imageRepository) {
+        this.imageRepository = imageRepository;
+    }
 
     @Override
     public ImageDto save(ImageDto dto) {
