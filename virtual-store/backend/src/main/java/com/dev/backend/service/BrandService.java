@@ -5,7 +5,6 @@ import com.dev.backend.model.Brand;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.repository.BrandRepository;
 import com.dev.backend.utils.ParseUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.List;
 @Service
 public class BrandService implements GenericModel<BrandDto> {
 
-    @Autowired
-    private BrandRepository brandRepository;
+    private final BrandRepository brandRepository;
+
+    public BrandService(BrandRepository brandRepository) {
+        this.brandRepository = brandRepository;
+    }
 
     @Override
     public BrandDto save(BrandDto dto) {

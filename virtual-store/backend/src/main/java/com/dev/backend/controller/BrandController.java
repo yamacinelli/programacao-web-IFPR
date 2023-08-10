@@ -2,7 +2,6 @@ package com.dev.backend.controller;
 
 import com.dev.backend.dto.BrandDto;
 import com.dev.backend.service.BrandService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +12,11 @@ import java.util.List;
 @RequestMapping("/brand")
 public class BrandController {
 
-    @Autowired
-    private BrandService brandService;
+    private final BrandService brandService;
+
+    public BrandController(BrandService brandService) {
+        this.brandService = brandService;
+    }
 
     @PostMapping
     ResponseEntity<BrandDto> save(@Valid @RequestBody BrandDto dto) {
