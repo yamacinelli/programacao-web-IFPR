@@ -5,7 +5,6 @@ import com.dev.backend.model.Product;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.repository.ProductRepository;
 import com.dev.backend.utils.ParseUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -20,11 +19,14 @@ import java.util.List;
 @Service
 public class ProductService implements GenericModel<ProductDto> {
 
-    @Autowired
-    EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    public ProductService(EntityManager entityManager, ProductRepository productRepository) {
+        this.entityManager = entityManager;
+        this.productRepository = productRepository;
+    }
 
     @Override
     public ProductDto save(ProductDto dto) {
