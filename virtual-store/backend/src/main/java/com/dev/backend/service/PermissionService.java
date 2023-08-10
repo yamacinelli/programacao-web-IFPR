@@ -5,7 +5,6 @@ import com.dev.backend.model.Permission;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.repository.PermissionRepository;
 import com.dev.backend.utils.ParseUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.List;
 @Service
 public class PermissionService implements GenericModel<PermissionDto> {
 
-    @Autowired
-    private PermissionRepository permissionRepository;
+    private final PermissionRepository permissionRepository;
+
+    public PermissionService(PermissionRepository permissionRepository) {
+        this.permissionRepository = permissionRepository;
+    }
 
     @Override
     public PermissionDto save(PermissionDto dto) {
