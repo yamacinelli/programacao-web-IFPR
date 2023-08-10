@@ -4,7 +4,6 @@ import com.dev.backend.dto.PeopleDto;
 import com.dev.backend.model.*;
 import com.dev.backend.repository.PeopleRepository;
 import com.dev.backend.utils.ParseUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -16,14 +15,17 @@ import java.util.List;
 @Service
 public class PeopleService implements GenericModel<PeopleDto> {
 
-    @Autowired
-    EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    @Autowired
-    private PeopleRepository peopleRepository;
+    private final PeopleRepository peopleRepository;
 
-    @Autowired
-    private AddressService addressService;
+    private final AddressService addressService;
+
+    public PeopleService(EntityManager entityManager, PeopleRepository peopleRepository, AddressService addressService) {
+        this.entityManager = entityManager;
+        this.peopleRepository = peopleRepository;
+        this.addressService = addressService;
+    }
 
     @Override
     public PeopleDto save(PeopleDto dto) {

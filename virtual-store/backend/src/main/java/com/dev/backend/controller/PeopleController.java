@@ -2,7 +2,6 @@ package com.dev.backend.controller;
 
 import com.dev.backend.dto.PeopleDto;
 import com.dev.backend.service.PeopleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping("/people")
 public class PeopleController {
 
-    @Autowired
-    private PeopleService peopleService;
+    private final PeopleService peopleService;
+
+    public PeopleController(PeopleService peopleService) {
+        this.peopleService = peopleService;
+    }
 
     @PostMapping
     ResponseEntity<PeopleDto> save(@RequestBody PeopleDto dto) {
