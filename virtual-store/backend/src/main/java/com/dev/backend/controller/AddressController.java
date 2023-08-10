@@ -2,7 +2,6 @@ package com.dev.backend.controller;
 
 import com.dev.backend.dto.AddressDto;
 import com.dev.backend.service.AddressService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping("/address")
 public class AddressController {
 
-    @Autowired
-    private AddressService addressService;
+    public final AddressService addressService;
+
+    public AddressController(AddressService addressService) {
+        this.addressService = addressService;
+    }
 
     @PostMapping
     ResponseEntity<AddressDto> save(@RequestBody AddressDto dto) {

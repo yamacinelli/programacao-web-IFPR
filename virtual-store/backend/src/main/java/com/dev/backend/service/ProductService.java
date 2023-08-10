@@ -1,8 +1,6 @@
 package com.dev.backend.service;
 
-import com.dev.backend.dto.PeopleDto;
 import com.dev.backend.dto.ProductDto;
-import com.dev.backend.model.People;
 import com.dev.backend.model.Product;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.repository.ProductRepository;

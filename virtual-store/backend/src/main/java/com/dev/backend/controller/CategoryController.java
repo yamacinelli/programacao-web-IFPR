@@ -1,7 +1,6 @@
 package com.dev.backend.controller;
 
 import com.dev.backend.dto.CategoryDto;
-import com.dev.backend.model.Category;
 import com.dev.backend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

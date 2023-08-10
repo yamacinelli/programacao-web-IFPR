@@ -1,6 +1,5 @@
 package com.dev.backend.service;
 
-import com.dev.backend.dto.AddressDto;
 import com.dev.backend.dto.PeopleDto;
 import com.dev.backend.model.*;
 import com.dev.backend.repository.PeopleRepository;
@@ -13,8 +12,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class PeopleService implements GenericModel<PeopleDto> {

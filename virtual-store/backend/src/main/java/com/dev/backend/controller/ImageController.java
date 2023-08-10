@@ -1,7 +1,6 @@
 package com.dev.backend.controller;
 
 import com.dev.backend.dto.ImageDto;
-import com.dev.backend.model.Image;
 import com.dev.backend.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

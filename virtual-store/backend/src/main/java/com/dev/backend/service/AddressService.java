@@ -1,12 +1,10 @@
 package com.dev.backend.service;
 
 import com.dev.backend.dto.AddressDto;
-import com.dev.backend.dto.CityDto;
 import com.dev.backend.model.Address;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.repository.AddressRepository;
 import com.dev.backend.utils.ParseUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +12,14 @@ import java.util.List;
 @Service
 public class AddressService implements GenericModel<AddressDto> {
 
-    @Autowired
-    private AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
 
-    @Autowired
-    private CityService cityService;
+    private final CityService cityService;
+
+    public AddressService(AddressRepository addressRepository, CityService cityService) {
+        this.addressRepository = addressRepository;
+        this.cityService = cityService;
+    }
 
     @Override
     public AddressDto save(AddressDto dto) {
