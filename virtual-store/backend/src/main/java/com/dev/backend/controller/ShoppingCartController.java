@@ -2,7 +2,6 @@ package com.dev.backend.controller;
 
 import com.dev.backend.dto.ShoppingCartDto;
 import com.dev.backend.service.ShoppingCartService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +12,11 @@ import java.util.List;
 @RequestMapping("/shopping-cart")
 public class ShoppingCartController {
 
-    @Autowired
-    private ShoppingCartService shoppingCartService;
+    private final ShoppingCartService shoppingCartService;
+
+    public ShoppingCartController(ShoppingCartService shoppingCartService) {
+        this.shoppingCartService = shoppingCartService;
+    }
 
     @PostMapping
     ResponseEntity<ShoppingCartDto> save(@RequestBody ShoppingCartDto dto) {

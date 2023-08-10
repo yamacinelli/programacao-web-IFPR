@@ -5,7 +5,6 @@ import com.dev.backend.model.ShoppingCart;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.repository.ShoppingCartRepository;
 import com.dev.backend.utils.ParseUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -21,11 +20,14 @@ import java.util.List;
 @Service
 public class ShoppingCartService implements GenericModel<ShoppingCartDto> {
 
-    @Autowired
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
+
+    public ShoppingCartService(EntityManager entityManager, ShoppingCartRepository shoppingCartRepository) {
+        this.entityManager = entityManager;
+        this.shoppingCartRepository = shoppingCartRepository;
+    }
 
     @Override
     public ShoppingCartDto save(ShoppingCartDto dto) {
