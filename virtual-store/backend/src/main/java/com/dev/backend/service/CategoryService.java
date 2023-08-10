@@ -5,7 +5,6 @@ import com.dev.backend.model.Category;
 import com.dev.backend.repository.CategoryRepository;
 import com.dev.backend.model.GenericModel;
 import com.dev.backend.utils.ParseUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.List;
 @Service
 public class CategoryService implements GenericModel<CategoryDto> {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
+
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Override
     public CategoryDto save(CategoryDto dto) {
