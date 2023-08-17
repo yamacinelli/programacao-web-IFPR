@@ -22,10 +22,10 @@ public class RestExceptionHandling extends ResponseEntityExceptionHandler {
     }
 
     private ResponseErrorDto responseError(MethodArgumentNotValidException e, HttpStatus status) {
-        return new ResponseErrorDto(status.value(), status.getReasonPhrase(), e.getBindingResult().getObjectName(), errorDtos(e));
+        return new ResponseErrorDto(status.value(), status.getReasonPhrase(), e.getBindingResult().getObjectName(), errorsDto(e));
     }
 
-    private List<ErrorDto> errorDtos(MethodArgumentNotValidException e) {
+    private List<ErrorDto> errorsDto(MethodArgumentNotValidException e) {
         return e.getBindingResult().getFieldErrors()
                 .stream()
                 .map(obj -> new ErrorDto(obj.getDefaultMessage(), obj.getField(), obj.getRejectedValue()))

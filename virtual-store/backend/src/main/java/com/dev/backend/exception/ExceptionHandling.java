@@ -22,7 +22,7 @@ public class ExceptionHandling {
         } else {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body("Exclusion is not possible, there was a violation in data.");
+                    .body("Action is not possible, there was a violation in data.");
         }
     }
 }
