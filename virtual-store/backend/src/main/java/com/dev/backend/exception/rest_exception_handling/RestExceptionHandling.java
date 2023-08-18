@@ -1,4 +1,4 @@
-package com.dev.backend.exception;
+package com.dev.backend.exception.rest_exception_handling;
 
 import com.dev.backend.dto.ErrorDto;
 import com.dev.backend.dto.ResponseErrorDto;
@@ -22,10 +22,10 @@ public class RestExceptionHandling extends ResponseEntityExceptionHandler {
     }
 
     private ResponseErrorDto responseError(MethodArgumentNotValidException e, HttpStatus status) {
-        return new ResponseErrorDto(status.value(), status.getReasonPhrase(), e.getBindingResult().getObjectName(), errorsDto(e));
+        return new ResponseErrorDto(status.value(), status.getReasonPhrase(), e.getBindingResult().getObjectName(), errorDtos(e));
     }
 
-    private List<ErrorDto> errorsDto(MethodArgumentNotValidException e) {
+    private List<ErrorDto> errorDtos(MethodArgumentNotValidException e) {
         return e.getBindingResult().getFieldErrors()
                 .stream()
                 .map(obj -> new ErrorDto(obj.getDefaultMessage(), obj.getField(), obj.getRejectedValue()))
