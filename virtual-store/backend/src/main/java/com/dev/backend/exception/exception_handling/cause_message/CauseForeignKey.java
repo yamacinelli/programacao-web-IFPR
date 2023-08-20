@@ -10,12 +10,14 @@ public class CauseForeignKey extends ExceptionHandlingMessage {
     }
 
     @Override
-    public ResponseEntity<?> message(String cause) {
-        if (cause.contains("FOREIGN KEY")) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("Exclusion is not possible, there was a violation of primary key.");
-        }
-        return nextMessage.message(cause);
+    public boolean isCause(String cause) {
+        return cause.contains("FOREIGN KEY");
+    }
+
+    @Override
+    public ResponseEntity<?> causeMessage() {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Exclusion is not possible, there was a violation of primary key.");
     }
 }

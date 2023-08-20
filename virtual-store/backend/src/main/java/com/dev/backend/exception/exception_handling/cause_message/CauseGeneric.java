@@ -10,7 +10,12 @@ public class CauseGeneric extends ExceptionHandlingMessage {
     }
 
     @Override
-    public ResponseEntity<?> message(String cause) {
+    public boolean isCause(String cause) {
+        return true;
+    }
+
+    @Override
+    public ResponseEntity<?> causeMessage() {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body("Action is not possible, there was a violation in data.");
