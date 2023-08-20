@@ -1,5 +1,6 @@
-package com.dev.backend.exception.exception_handling.cause_message;
+package com.dev.backend.exception.exception_handling.data_integrity_violation;
 
+import com.dev.backend.exception.exception_handling.ExceptionHandlingMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

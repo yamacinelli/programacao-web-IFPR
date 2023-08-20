@@ -1,17 +1,18 @@
-package com.dev.backend.exception.exception_handling.cause_message;
+package com.dev.backend.exception.exception_handling.data_integrity_violation;
 
+import com.dev.backend.exception.exception_handling.ExceptionHandlingMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public class CauseForeignKey extends ExceptionHandlingMessage {
+public class CausePrimaryKey extends ExceptionHandlingMessage {
 
-    public CauseForeignKey(ExceptionHandlingMessage nextMessage) {
+    public CausePrimaryKey(ExceptionHandlingMessage nextMessage) {
         super(nextMessage);
     }
 
     @Override
     public boolean isCause(String cause) {
-        return cause.contains("FOREIGN KEY");
+        return cause.contains("PRIMARY KEY");
     }
 
     @Override

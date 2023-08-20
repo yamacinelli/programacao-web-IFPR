@@ -1,4 +1,4 @@
-package com.dev.backend.exception.rest_exception_handling;
+package com.dev.backend.exception;
 
 import com.dev.backend.dto.ErrorDto;
 import com.dev.backend.dto.ResponseErrorDto;

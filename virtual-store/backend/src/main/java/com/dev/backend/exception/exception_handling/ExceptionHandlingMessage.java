@@ -1,4 +1,4 @@
-package com.dev.backend.exception.exception_handling.cause_message;
+package com.dev.backend.exception.exception_handling;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ public abstract class ExceptionHandlingMessage {
         return nextMessage.message(cause);
     }
 
-    abstract boolean isCause(String cause);
+    protected abstract boolean isCause(String cause);
 
-    abstract ResponseEntity<?> causeMessage();
+    public abstract ResponseEntity<?> causeMessage();
 }
