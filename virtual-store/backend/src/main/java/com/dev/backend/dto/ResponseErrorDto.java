@@ -15,5 +15,5 @@ public class ResponseErrorDto {
 
     private String errorInObject;
 
-    private List<ErrorDto> errorDtos;
+    private List<ErrorDto> errorsDto;
 }
