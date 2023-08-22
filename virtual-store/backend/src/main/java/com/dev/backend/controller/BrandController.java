@@ -1,7 +1,7 @@
 package com.dev.backend.controller;
 
 import com.dev.backend.dto.BrandDto;
-import com.dev.backend.service.BrandServiceImpl;
+import com.dev.backend.service.BrandService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +12,9 @@ import java.util.List;
 @RequestMapping("/brand")
 public class BrandController {
 
-    private final BrandServiceImpl brandService;
+    private final BrandService brandService;
 
-    public BrandController(BrandServiceImpl brandService) {
+    public BrandController(BrandService brandService) {
         this.brandService = brandService;
     }
 
