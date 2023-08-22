@@ -54,6 +54,7 @@ public class PeopleServiceImpl implements PeopleService {
         return ParseUtils.parse(peopleRepository.findAll(), PeopleDto.class);
     }
 
+    @Override
     public List<PeopleDto> findAllBy(Integer cityId, Integer permissionId) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<People> criteriaQuery = criteriaBuilder.createQuery(People.class);
