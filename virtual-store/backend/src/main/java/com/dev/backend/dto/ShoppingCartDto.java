@@ -23,7 +23,7 @@ public class ShoppingCartDto extends AuditableDto {
     @Size(min = 1, max = 2, message = "{situation.size}")
     private String situation;
 
-    private List<ProductDto> productDtos;
+    private List<ProductDto> productsDto;
 
     private Double amount;
 
