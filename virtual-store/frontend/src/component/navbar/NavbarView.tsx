@@ -6,8 +6,9 @@ const NavbarView = () => {
     return (
         <div id={styles.navbar}>
             <ul>
-                <li>Navigation</li>
-                <li><ColorModeSwitcher justifySelf="flex-end" /></li>
+                <li id={styles.left}><h2><strong>SNKR</strong></h2></li>
+                <li id={styles.center}>Navigation</li>
+                <li id={styles.right}><ColorModeSwitcher justifySelf="flex-end" /></li>
             </ul>
         </div>
     );

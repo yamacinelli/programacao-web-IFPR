@@ -1,7 +1,7 @@
 #navbar {
     position: fixed;
     top: 12px;
-    width: 100%;
+    width: 98.2%;
 }
 
 #navbar ul {
@@ -10,4 +10,20 @@
 
 #navbar li {
     display: inline;
+}
+
+#navbar li:hover {
+    cursor: pointer;
+}
+
+#navbar #left {
+    float: left;
+}
+
+#navbar #center {
+    float: none;
+}
+
+#navbar #right {
+    float: right;
 }
