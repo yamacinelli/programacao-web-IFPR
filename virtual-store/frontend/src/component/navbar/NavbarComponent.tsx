@@ -1,8 +1,8 @@
-import styles from "./NavbarView.module.css";
+import styles from "./NavbarComponent.module.css";
 import {ColorModeSwitcher} from "../../ColorModeSwitcher";
 import * as React from "react";
 
-const NavbarView = () => {
+const NavbarComponent = () => {
     return (
         <div id={styles.navbar}>
             <ul>
@@ -13,4 +13,4 @@ const NavbarView = () => {
         </div>
     );
 }
-export default NavbarView;
+export default NavbarComponent;
