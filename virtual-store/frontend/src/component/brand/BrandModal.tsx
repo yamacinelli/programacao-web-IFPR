@@ -1,40 +1,37 @@
 import {
-    Box, Button,
-    Flex,
+    Button,
     FormControl,
-    FormHelperText,
     FormLabel,
-    Heading,
     Input,
     Modal, ModalBody, ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
     ModalOverlay
 } from "@chakra-ui/react";
-import {useRef} from "react";
 
-const BrandForm = (props: any) => {
+const BrandModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
     return (
         <Modal
-            isOpen={props.isOpen}
-            onClose={props.onClose}
+            isOpen={isOpen}
+            onClose={onClose}
+            initialFocusRef={initialRef}
         >
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>Create your account</ModalHeader>
+                <ModalHeader>Add Brand</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
-                    <FormControl>
+                    <FormControl variant={'floating'}>
                         <FormLabel>Name</FormLabel>
-                        <Input placeholder="Name" />
+                        <Input ref={initialRef} placeholder={''} />
                     </FormControl>
                 </ModalBody>
                 <ModalFooter>
                     <Button colorScheme="blue" mr={3}>Save</Button>
-                    <Button onClick={props.onClose}>Cancel</Button>
+                    <Button onClick={onClose}>Cancel</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>
     );
 }
-export default BrandForm;
+export default BrandModal;
