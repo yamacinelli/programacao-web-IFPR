@@ -1,0 +1,22 @@
+#footer {
+    position: fixed;
+    bottom: 12px;
+    width: 98.2%;
+    font-size: 15px;
+}
+
+#footer ul {
+    list-style-type: none;
+}
+
+#footer li {
+    display: inline;
+}
+
+#footer #left {
+    float: left;
+}
+
+#footer #right {
+    float: right;
+}

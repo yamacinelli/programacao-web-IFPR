@@ -18,7 +18,8 @@ import CategoryModal from "../../component/category/CategoryModal";
 
 const ProductView = () => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const brandDisclosure = useDisclosure();
+    const categoryDisclosure = useDisclosure();
     const initialRef = useRef(null);
 
     return (
@@ -38,16 +39,16 @@ const ProductView = () => {
                         </ButtonGroup>
                         <ButtonGroup size='sm' isAttached variant='outline' colorScheme='teal'>
                             <Button w={'32'}>Brand</Button>
-                            <IconButton w={'14'} aria-label='Add Brand' icon={<AddIcon />} onClick={onOpen} />
+                            <IconButton w={'14'} aria-label='Add Brand' icon={<AddIcon />} onClick={brandDisclosure.onOpen} />
                         </ButtonGroup>
                         <ButtonGroup size='sm' isAttached variant='outline' colorScheme='teal'>
                             <Button w={'32'}>Category</Button>
-                            <IconButton w={'14'} aria-label='Add Category' icon={<AddIcon />} onClick={onOpen} />
+                            <IconButton w={'14'} aria-label='Add Category' icon={<AddIcon />} onClick={categoryDisclosure.onOpen} />
                         </ButtonGroup>
                     </VStack>
                 </GridItem>
-                <BrandModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} initialRef={initialRef} />
-                <CategoryModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} initialRef={initialRef} />
+                <BrandModal isOpen={brandDisclosure.isOpen} onOpen={brandDisclosure.onOpen} onClose={brandDisclosure.onClose} initialRef={initialRef} />
+                <CategoryModal isOpen={categoryDisclosure.isOpen} onOpen={categoryDisclosure.onOpen} onClose={categoryDisclosure.onClose} initialRef={initialRef} />
             </Grid>
         </Box>
     );
