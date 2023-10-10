@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/brand")
+@CrossOrigin
 public class BrandController {
 
     private final BrandService brandService;

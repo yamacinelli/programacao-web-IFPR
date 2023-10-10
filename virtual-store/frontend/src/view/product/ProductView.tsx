@@ -15,10 +15,13 @@ import {AddIcon} from "@chakra-ui/icons";
 import BrandModal from "../../component/brand/BrandModal";
 import {useRef} from "react";
 import CategoryModal from "../../component/category/CategoryModal";
+import BrandList from "../../component/brand/BrandList";
 
 const ProductView = () => {
+    // brand states
+    const brandModalDisclosure = useDisclosure();
+    const brandListDisclosure = useDisclosure();
 
-    const brandDisclosure = useDisclosure();
     const categoryDisclosure = useDisclosure();
     const initialRef = useRef(null);
 
@@ -38,8 +41,8 @@ const ProductView = () => {
                             <IconButton w={'14'} aria-label='Add Product' icon={<AddIcon />} />
                         </ButtonGroup>
                         <ButtonGroup size='sm' isAttached variant='outline' colorScheme='teal'>
-                            <Button w={'32'}>Brand</Button>
-                            <IconButton w={'14'} aria-label='Add Brand' icon={<AddIcon />} onClick={brandDisclosure.onOpen} />
+                            <Button w={'32'} onClick={brandListDisclosure.onOpen}>Brand</Button>
+                            <IconButton w={'14'} aria-label='Add Brand' icon={<AddIcon />} onClick={brandModalDisclosure.onOpen} />
                         </ButtonGroup>
                         <ButtonGroup size='sm' isAttached variant='outline' colorScheme='teal'>
                             <Button w={'32'}>Category</Button>
@@ -47,7 +50,8 @@ const ProductView = () => {
                         </ButtonGroup>
                     </VStack>
                 </GridItem>
-                <BrandModal isOpen={brandDisclosure.isOpen} onOpen={brandDisclosure.onOpen} onClose={brandDisclosure.onClose} initialRef={initialRef} />
+                <BrandList isOpen={brandListDisclosure.isOpen} onOpen={brandListDisclosure.onOpen} onClose={brandListDisclosure.onClose} />
+                <BrandModal isOpen={brandModalDisclosure.isOpen} onOpen={brandModalDisclosure.onOpen} onClose={brandModalDisclosure.onClose} initialRef={initialRef} />
                 <CategoryModal isOpen={categoryDisclosure.isOpen} onOpen={categoryDisclosure.onOpen} onClose={categoryDisclosure.onClose} initialRef={initialRef} />
             </Grid>
         </Box>
