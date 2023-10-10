@@ -46,7 +46,14 @@ export const theme = extendTheme({
           }
         }
       }
-    }
+    },
+    Button: {
+      defaultProps: {
+        size: 'sm',
+        variant: 'outline',
+        colorScheme: 'teal',
+      },
+    },
   }
 });
 

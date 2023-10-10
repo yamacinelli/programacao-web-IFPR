@@ -21,8 +21,10 @@ const ProductView = () => {
     // brand states
     const brandModalDisclosure = useDisclosure();
     const brandListDisclosure = useDisclosure();
-
+    // category states
     const categoryDisclosure = useDisclosure();
+    const categoryListDisclosure = useDisclosure();
+
     const initialRef = useRef(null);
 
     return (
@@ -36,15 +38,15 @@ const ProductView = () => {
                 <GridItem colSpan={10} />
                 <GridItem colSpan={2}>
                     <VStack h={'full'} justify={'space-evenly'}>
-                        <ButtonGroup size='sm' isAttached variant='outline' colorScheme='teal'>
+                        <ButtonGroup isAttached>
                             <Button w={'32'}>Product</Button>
                             <IconButton w={'14'} aria-label='Add Product' icon={<AddIcon />} />
                         </ButtonGroup>
-                        <ButtonGroup size='sm' isAttached variant='outline' colorScheme='teal'>
+                        <ButtonGroup isAttached>
                             <Button w={'32'} onClick={brandListDisclosure.onOpen}>Brand</Button>
                             <IconButton w={'14'} aria-label='Add Brand' icon={<AddIcon />} onClick={brandModalDisclosure.onOpen} />
                         </ButtonGroup>
-                        <ButtonGroup size='sm' isAttached variant='outline' colorScheme='teal'>
+                        <ButtonGroup isAttached>
                             <Button w={'32'}>Category</Button>
                             <IconButton w={'14'} aria-label='Add Category' icon={<AddIcon />} onClick={categoryDisclosure.onOpen} />
                         </ButtonGroup>

@@ -55,8 +55,8 @@ const BrandModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
                     </FormControl>
                 </ModalBody>
                 <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={() => handleSave(brand)}>Save</Button>
-                    <Button onClick={onClose}>Cancel</Button>
+                    <Button mr={3} onClick={() => handleSave(brand)}>Save</Button>
+                    <Button colorScheme={'red'} onClick={onClose}>Cancel</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>
