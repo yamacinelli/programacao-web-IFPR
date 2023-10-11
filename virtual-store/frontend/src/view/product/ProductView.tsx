@@ -52,9 +52,9 @@ const ProductView = () => {
                         </ButtonGroup>
                     </VStack>
                 </GridItem>
-                <BrandList isOpen={brandListDisclosure.isOpen} onOpen={brandListDisclosure.onOpen} onClose={brandListDisclosure.onClose} />
-                <BrandModal isOpen={brandModalDisclosure.isOpen} onOpen={brandModalDisclosure.onOpen} onClose={brandModalDisclosure.onClose} initialRef={initialRef} />
-                <CategoryModal isOpen={categoryDisclosure.isOpen} onOpen={categoryDisclosure.onOpen} onClose={categoryDisclosure.onClose} initialRef={initialRef} />
+                {brandListDisclosure.isOpen ? <BrandList isOpen={brandListDisclosure.isOpen} onOpen={brandListDisclosure.onOpen} onClose={brandListDisclosure.onClose} /> : null}
+                {brandModalDisclosure.isOpen ? <BrandModal isOpen={brandModalDisclosure.isOpen} onOpen={brandModalDisclosure.onOpen} onClose={brandModalDisclosure.onClose} initialRef={initialRef} /> : null}
+                {categoryDisclosure ? <CategoryModal isOpen={categoryDisclosure.isOpen} onOpen={categoryDisclosure.onOpen} onClose={categoryDisclosure.onClose} initialRef={initialRef} /> : null}
             </Grid>
         </Box>
     );

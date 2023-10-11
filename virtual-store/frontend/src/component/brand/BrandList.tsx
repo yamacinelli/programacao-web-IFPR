@@ -47,7 +47,7 @@ const BrandList = ({ isOpen, onOpen, onClose }: any) => {
                             <Tbody>
                                 {brands.map((brand: Brand) => {
                                     return (
-                                        <Tr>
+                                        <Tr key={brand.id}>
                                             <Td>{brand.name}</Td>
                                         </Tr>
                                     );
