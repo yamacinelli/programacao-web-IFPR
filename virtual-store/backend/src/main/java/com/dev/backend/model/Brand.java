@@ -14,6 +14,6 @@ public class Brand extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
 }

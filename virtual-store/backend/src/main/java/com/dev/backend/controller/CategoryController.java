@@ -5,10 +5,12 @@ import com.dev.backend.service.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -18,12 +20,12 @@ public class CategoryController {
     }
 
     @PostMapping
-    ResponseEntity<CategoryDto> save(@RequestBody CategoryDto dto) {
+    ResponseEntity<CategoryDto> save(@Valid @RequestBody CategoryDto dto) {
         return ResponseEntity.ok(categoryService.save(dto));
     }
 
     @PostMapping("/save-all")
-    ResponseEntity<List<CategoryDto>> saveAll(@RequestBody List<CategoryDto> dtos) {
+    ResponseEntity<List<CategoryDto>> saveAll(@Valid @RequestBody List<CategoryDto> dtos) {
         return ResponseEntity.ok(categoryService.saveAll(dtos));
     }
 
@@ -43,7 +45,7 @@ public class CategoryController {
     }
 
     @PutMapping
-    ResponseEntity<CategoryDto> update(@RequestBody CategoryDto dto) {
+    ResponseEntity<CategoryDto> update(@Valid @RequestBody CategoryDto dto) {
         return ResponseEntity.ok(categoryService.update(dto));
     }
 }
