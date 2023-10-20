@@ -6,21 +6,58 @@ import {
     Modal, ModalBody, ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
-    ModalOverlay, NumberInput, NumberInputField, useToast, VStack
+    ModalOverlay, NumberInput, NumberInputField, Select, Td, Tr, useToast, VStack
 } from "@chakra-ui/react";
-import {ChangeEventHandler, useState} from "react";
+import {ChangeEventHandler, useEffect, useState} from "react";
 import {Product} from "../../model/Product";
 import ProductService from "../../service/ProductService";
+import {Brand} from "../../model/Brand";
+import BrandService from "../../service/BrandService";
+import CategoryService from "../../service/CategoryService";
+import {Category} from "../../model/Category";
 
 const ProductModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
 
+    // states
     const [ product, setProduct ] = useState(new Product());
+    const [ brands, setBrands ] = useState([]);
+    const [ categorys, setCategorys ] = useState([]);
+    // services
     const service = new ProductService();
+    const brandService = new BrandService();
+    const categoryService = new CategoryService();
     const toast = useToast();
+
+    useEffect(() => {
+        findAllBrand();
+        findAllCategory();
+    }, []);
+
+    const findAllBrand = () => {
+        brandService.findAll()
+            .then(response => {
+                setBrands(response.data);
+            })
+            .catch(error => {
+                toast({ description: 'Error on get brand list', status: 'error' });
+                console.error(error);
+            });
+    }
+
+    const findAllCategory = () => {
+        categoryService.findAll()
+            .then(response => {
+                setCategorys(response.data);
+            })
+            .catch(error => {
+                toast({ description: 'Error on get category list', status: 'error' });
+                console.error(error);
+            });
+    }
 
     const handleRequired = (value: string | number | undefined) => value == null || value.toString().trim() == '';
 
-    const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleChange: ChangeEventHandler<HTMLInputElement | HTMLSelectElement> = (e) => {
         const { name, value } = e.target;
         setProduct(prevState => ({
             ...prevState,
@@ -70,13 +107,21 @@ const ProductModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
                         </FormControl>
 
                         <FormControl variant={'floating'} isRequired isInvalid={handleRequired(product.brand?.name)}>
-                            <Input name={'brand'} placeholder={''} onChange={handleChange} />
+                            <Select name={'brand'} placeholder={''} onChange={handleChange} >
+                                {brands.map((brand: Brand) => (
+                                    <option key={brand.id} value={brand.id}>{brand.name}</option>
+                                ))}
+                            </Select>
                             <FormLabel>Brand</FormLabel>
                             <FormErrorMessage>Brand is required</FormErrorMessage>
                         </FormControl>
 
                         <FormControl variant={'floating'} isRequired isInvalid={handleRequired(product.category?.name)}>
-                            <Input name={'category'} placeholder={''} onChange={handleChange} />
+                            <Select name={'category'} placeholder={''} onChange={handleChange} >
+                                {categorys.map((category: Category) => (
+                                    <option key={category.id} value={category.id}>{category.name}</option>
+                                ))}
+                            </Select>
                             <FormLabel>Category</FormLabel>
                             <FormErrorMessage>Category is required</FormErrorMessage>
                         </FormControl>
