@@ -43,7 +43,7 @@ const ProductView = () => {
                 <GridItem colSpan={2}>
                     <VStack h={'full'} justify={'space-evenly'}>
                         <ButtonGroup isAttached>
-                            <Button w={'32'} isDisabled={true}>Product</Button>
+                            <Button w={'32'} pointerEvents='none'>Product</Button>
                             <IconButton w={'14'} aria-label='Add Product' icon={<AddIcon />} onClick={productModalDisclosure.onOpen} />
                         </ButtonGroup>
                         <ButtonGroup isAttached>
