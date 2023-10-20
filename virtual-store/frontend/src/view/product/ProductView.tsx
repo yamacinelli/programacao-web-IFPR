@@ -17,8 +17,11 @@ import {useRef} from "react";
 import CategoryModal from "../../component/category/CategoryModal";
 import BrandList from "../../component/brand/BrandList";
 import CategoryList from "../../component/category/CategoryList";
+import ProductModal from "../../component/product/ProductModal";
 
 const ProductView = () => {
+    // product states
+    const productModalDisclosure = useDisclosure();
     // brand states
     const brandListDisclosure = useDisclosure();
     const brandModalDisclosure = useDisclosure();
@@ -40,8 +43,8 @@ const ProductView = () => {
                 <GridItem colSpan={2}>
                     <VStack h={'full'} justify={'space-evenly'}>
                         <ButtonGroup isAttached>
-                            <Button w={'32'}>Product</Button>
-                            <IconButton w={'14'} aria-label='Add Product' icon={<AddIcon />} />
+                            <Button w={'32'} isDisabled={true}>Product</Button>
+                            <IconButton w={'14'} aria-label='Add Product' icon={<AddIcon />} onClick={productModalDisclosure.onOpen} />
                         </ButtonGroup>
                         <ButtonGroup isAttached>
                             <Button w={'32'} onClick={brandListDisclosure.onOpen}>Brand</Button>
@@ -53,6 +56,7 @@ const ProductView = () => {
                         </ButtonGroup>
                     </VStack>
                 </GridItem>
+                {productModalDisclosure.isOpen ? <ProductModal isOpen={productModalDisclosure.isOpen} onOpen={productModalDisclosure.onOpen} onClose={productModalDisclosure.onClose} initialRef={initialRef} /> : null}
                 {brandListDisclosure.isOpen ? <BrandList isOpen={brandListDisclosure.isOpen} onOpen={brandListDisclosure.onOpen} onClose={brandListDisclosure.onClose} /> : null}
                 {brandModalDisclosure.isOpen ? <BrandModal isOpen={brandModalDisclosure.isOpen} onOpen={brandModalDisclosure.onOpen} onClose={brandModalDisclosure.onClose} initialRef={initialRef} /> : null}
                 {categoryListDisclosure.isOpen ? <CategoryList isOpen={categoryListDisclosure.isOpen} onOpen={categoryListDisclosure.onOpen} onClose={categoryListDisclosure.onClose} /> : null}

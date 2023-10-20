@@ -5,10 +5,12 @@ import com.dev.backend.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin
 public class ProductController {
 
     private final ProductService productService;
@@ -18,12 +20,12 @@ public class ProductController {
     }
 
     @PostMapping
-    ResponseEntity<ProductDto> save(@RequestBody ProductDto dto) {
+    ResponseEntity<ProductDto> save(@Valid @RequestBody ProductDto dto) {
         return ResponseEntity.ok(productService.save(dto));
     }
 
     @PostMapping("/save-all")
-    ResponseEntity<List<ProductDto>> saveAll(@RequestBody List<ProductDto> dtos) {
+    ResponseEntity<List<ProductDto>> saveAll(@Valid @RequestBody List<ProductDto> dtos) {
         return ResponseEntity.ok(productService.saveAll(dtos));
     }
 
@@ -43,7 +45,7 @@ public class ProductController {
     }
 
     @PutMapping
-    ResponseEntity<ProductDto> update(@RequestBody ProductDto dto) {
+    ResponseEntity<ProductDto> update(@Valid @RequestBody ProductDto dto) {
         return ResponseEntity.ok(productService.update(dto));
     }
 }
