@@ -19,6 +19,7 @@ const activeLabelStyles = {
 
 export const theme = extendTheme({
   components: {
+    // form styled default
     Form: {
       variants: {
         floating: {
@@ -36,7 +37,7 @@ export const theme = extendTheme({
               left: 0,
               zIndex: 2,
               position: "absolute",
-              backgroundColor: "transparent",
+              backgroundColor: "#2D3748",
               pointerEvents: "none",
               mx: 3,
               px: 1,
@@ -47,6 +48,7 @@ export const theme = extendTheme({
         }
       }
     },
+    // button styled default
     Button: {
       defaultProps: {
         size: 'sm',
