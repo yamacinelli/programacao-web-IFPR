@@ -49,7 +49,7 @@ const ProductModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
                 <ModalHeader>Add Product</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
-                    <VStack>
+                    <VStack spacing={'1rem'}>
                         <FormControl variant={'floating'}>
                             <Input name={'name'} ref={initialRef} placeholder={''} onChange={handleChange} />
                             <FormLabel>Name</FormLabel>
