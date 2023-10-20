@@ -50,8 +50,8 @@ const CategoryModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
                 <ModalCloseButton />
                 <ModalBody pb={6}>
                     <FormControl variant={'floating'}>
-                        <FormLabel>Name</FormLabel>
                         <Input name={'name'} ref={initialRef} placeholder={''} onChange={handleChange} />
+                        <FormLabel>Name</FormLabel>
                     </FormControl>
                 </ModalBody>
                 <ModalFooter>
