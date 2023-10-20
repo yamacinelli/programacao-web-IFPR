@@ -1,8 +1,8 @@
 import {
     Button,
-    FormControl,
+    FormControl, FormErrorMessage,
     FormLabel, HStack,
-    Input,
+    Input, InputGroup, InputLeftElement,
     Modal, ModalBody, ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
@@ -17,6 +17,8 @@ const ProductModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
     const [ product, setProduct ] = useState(new Product());
     const service = new ProductService();
     const toast = useToast();
+
+    const handleRequired = (value: string | number | undefined) => value == null || value.toString().trim() == '';
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
@@ -50,14 +52,16 @@ const ProductModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
                 <ModalCloseButton />
                 <ModalBody pb={6}>
                     <VStack spacing={'1rem'}>
-                        <FormControl variant={'floating'}>
+                        <FormControl variant={'floating'} isRequired isInvalid={handleRequired(product.name)}>
                             <Input name={'name'} ref={initialRef} placeholder={''} onChange={handleChange} />
                             <FormLabel>Name</FormLabel>
+                            <FormErrorMessage>Name is required</FormErrorMessage>
                         </FormControl>
 
-                        <FormControl variant={'floating'}>
+                        <FormControl variant={'floating'} isRequired isInvalid={handleRequired(product.shortDescription)}>
                             <Input name={'shortDescription'} placeholder={''} onChange={handleChange} />
                             <FormLabel>Short Description</FormLabel>
+                            <FormErrorMessage>Short Description is required</FormErrorMessage>
                         </FormControl>
 
                         <FormControl variant={'floating'}>
@@ -65,25 +69,34 @@ const ProductModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
                             <FormLabel>Detailed Description</FormLabel>
                         </FormControl>
 
-                        <FormControl variant={'floating'}>
+                        <FormControl variant={'floating'} isRequired isInvalid={handleRequired(product.brand?.name)}>
                             <Input name={'brand'} placeholder={''} onChange={handleChange} />
                             <FormLabel>Brand</FormLabel>
+                            <FormErrorMessage>Brand is required</FormErrorMessage>
                         </FormControl>
 
-                        <FormControl variant={'floating'}>
+                        <FormControl variant={'floating'} isRequired isInvalid={handleRequired(product.category?.name)}>
                             <Input name={'category'} placeholder={''} onChange={handleChange} />
                             <FormLabel>Category</FormLabel>
+                            <FormErrorMessage>Category is required</FormErrorMessage>
                         </FormControl>
 
                         <HStack>
-                            <FormControl variant={'floating'}>
-                                <Input name={'costValue'} placeholder={''} onChange={handleChange} />
-                                <FormLabel>Cost Value</FormLabel>
+                            <FormControl variant={'floating'} isRequired isInvalid={handleRequired(product.costValue)}>
+                                <InputGroup>
+                                    <InputLeftElement pointerEvents='none' children='$' />
+                                    <Input name={'costValue'} type={'number'} placeholder={''} onChange={handleChange} />
+                                    <FormLabel>Cost Value</FormLabel>
+                                </InputGroup>
+                                <FormErrorMessage>Cost Value is required</FormErrorMessage>
                             </FormControl>
 
                             <FormControl variant={'floating'}>
-                                <Input name={'saleValue'} placeholder={''} onChange={handleChange} />
-                                <FormLabel>Sale Value</FormLabel>
+                                <InputGroup>
+                                    <InputLeftElement pointerEvents='none' children='$' />
+                                    <Input name={'saleValue'} type={'number'} placeholder={''} onChange={handleChange} />
+                                    <FormLabel>Sale Value</FormLabel>
+                                </InputGroup>
                             </FormControl>
                         </HStack>
                     </VStack>
