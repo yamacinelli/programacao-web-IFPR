@@ -31,6 +31,7 @@ const CategoryList = ({ isOpen, onOpen, onClose }: any) => {
         <Modal
             isOpen={isOpen}
             onClose={onClose}
+            scrollBehavior='inside'
         >
             <ModalOverlay />
             <ModalContent>
