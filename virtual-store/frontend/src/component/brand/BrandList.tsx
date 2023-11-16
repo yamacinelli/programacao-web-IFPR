@@ -31,6 +31,7 @@ const BrandList = ({ isOpen, onOpen, onClose }: any) => {
         <Modal
             isOpen={isOpen}
             onClose={onClose}
+            isCentered
             scrollBehavior='inside'
         >
             <ModalOverlay />

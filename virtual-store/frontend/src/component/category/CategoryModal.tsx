@@ -43,6 +43,7 @@ const CategoryModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
             isOpen={isOpen}
             onClose={onClose}
             initialFocusRef={initialRef}
+            isCentered
         >
             <ModalOverlay />
             <ModalContent>
