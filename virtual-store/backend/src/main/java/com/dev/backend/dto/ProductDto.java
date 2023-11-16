@@ -26,7 +26,7 @@ public class ProductDto extends AuditableDto {
     @NotNull(message = "{category.not.null}")
     private CategoryDto category;
 
-    @NotEmpty(message = "{cost.value.not.empty}")
+    @NotNull(message = "{cost.value.not.null}")
     private Double costValue;
 
     private Double saleValue;
