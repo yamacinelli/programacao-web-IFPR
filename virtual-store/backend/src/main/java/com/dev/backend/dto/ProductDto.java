@@ -29,7 +29,6 @@ public class ProductDto extends AuditableDto {
     @NotEmpty(message = "{cost.value.not.empty}")
     private Double costValue;
 
-    @NotEmpty(message = "{sale.value.not.empty}")
     private Double saleValue;
 
     private ImageDto image;
