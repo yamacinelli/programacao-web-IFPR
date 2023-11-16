@@ -2,7 +2,7 @@ import {
     Button,
     FormControl, FormErrorMessage,
     FormLabel, HStack,
-    Input, InputGroup, InputLeftElement,
+    Input, InputGroup, InputLeftAddon, InputLeftElement,
     Modal, ModalBody, ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
@@ -146,18 +146,22 @@ const ProductModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
                         <HStack>
                             <FormControl variant={'floating'} isRequired isInvalid={handleRequired(product.costValue)}>
                                 <InputGroup>
-                                    <InputLeftElement pointerEvents='none' children='$' />
-                                    <Input name={'costValue'} type={'number'} placeholder={''} onChange={handleChange} />
-                                    <FormLabel>Cost Value</FormLabel>
+                                    <NumberInput precision={2} step={0.2}>
+                                        <InputLeftElement pointerEvents='none' children='$' />
+                                        <NumberInputField pl='2em' name={'costValue'} onChange={handleChange} />
+                                        <FormLabel>Cost Value</FormLabel>
+                                    </NumberInput>
                                 </InputGroup>
                                 <FormErrorMessage>Cost Value is required</FormErrorMessage>
                             </FormControl>
 
                             <FormControl variant={'floating'}>
                                 <InputGroup>
-                                    <InputLeftElement pointerEvents='none' children='$' />
-                                    <Input name={'saleValue'} type={'number'} placeholder={''} onChange={handleChange} />
-                                    <FormLabel>Sale Value</FormLabel>
+                                    <NumberInput precision={2} step={0.2}>
+                                        <InputLeftElement pointerEvents='none' children='$' />
+                                        <NumberInputField pl='2em' name={'saleValue'} onChange={handleChange} />
+                                        <FormLabel>Sale Value</FormLabel>
+                                    </NumberInput>
                                 </InputGroup>
                             </FormControl>
                         </HStack>
