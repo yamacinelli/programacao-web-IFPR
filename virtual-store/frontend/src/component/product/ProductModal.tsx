@@ -55,13 +55,30 @@ const ProductModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
             });
     }
 
+    const handleObjectSelect = (name: string, index: number): any => {
+        switch (name) {
+            case 'brand':
+                return brands.at(index);
+            case 'category':
+                return categorys.at(index);
+        }
+    }
+
     const handleRequired = (value: string | number | undefined) => value == null || value.toString().trim() == '';
 
-    const handleChange: ChangeEventHandler<HTMLInputElement | HTMLSelectElement> = (e) => {
+    const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
         setProduct(prevState => ({
             ...prevState,
             [name]: value
+        }));
+    }
+
+    const handleSelectChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
+        const { name, value } = e.target;
+        setProduct(prevState => ({
+            ...prevState,
+            [name]: handleObjectSelect(name, Number(value))
         }));
     }
 
@@ -107,9 +124,9 @@ const ProductModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
                         </FormControl>
 
                         <FormControl variant={'floating'} isRequired isInvalid={handleRequired(product.brand?.name)}>
-                            <Select name={'brand'} placeholder={''} onChange={handleChange} >
-                                {brands.map((brand: Brand) => (
-                                    <option key={brand.id} value={brand.id}>{brand.name}</option>
+                            <Select name={'brand'} placeholder={'Select a Brand'} onChange={handleSelectChange} >
+                                {brands.map((brand: Brand, index: number) => (
+                                    <option key={brand.id} value={index}>{brand.name}</option>
                                 ))}
                             </Select>
                             <FormLabel>Brand</FormLabel>
@@ -117,9 +134,9 @@ const ProductModal = ({ isOpen, onOpen, onClose, initialRef }: any) => {
                         </FormControl>
 
                         <FormControl variant={'floating'} isRequired isInvalid={handleRequired(product.category?.name)}>
-                            <Select name={'category'} placeholder={''} onChange={handleChange} >
-                                {categorys.map((category: Category) => (
-                                    <option key={category.id} value={category.id}>{category.name}</option>
+                            <Select name={'category'} placeholder={'Select a Category'} onChange={handleSelectChange} >
+                                {categorys.map((category: Category, index: number) => (
+                                    <option key={category.id} value={index}>{category.name}</option>
                                 ))}
                             </Select>
                             <FormLabel>Category</FormLabel>
