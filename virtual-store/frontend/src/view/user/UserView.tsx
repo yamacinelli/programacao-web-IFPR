@@ -1,14 +1,16 @@
-import {Box, Button, ButtonGroup, Grid, GridItem, HStack, IconButton, VStack} from "@chakra-ui/react";
+import {Box, Button, ButtonGroup, Grid, GridItem, HStack, IconButton, useDisclosure, VStack} from "@chakra-ui/react";
 import styles from "./UserView.module.css";
 import {AddIcon} from "@chakra-ui/icons";
-import ProductList from "../../component/product/ProductList";
-import ProductModal from "../../component/product/ProductModal";
-import BrandList from "../../component/brand/BrandList";
-import BrandModal from "../../component/brand/BrandModal";
-import CategoryList from "../../component/category/CategoryList";
-import CategoryModal from "../../component/category/CategoryModal";
+import PermissionModal from "../../component/permission/PermissionModal";
+import PermissionList from "../../component/permission/PermissionList";
 
 const UserView = () => {
+    // user states
+    const userModalDisclosure = useDisclosure();
+    // permission states
+    const permissionListDisclosure = useDisclosure();
+    const permissionModalDisclosure = useDisclosure();
+
     return (
         <Box id={styles.product}>
             <Grid
@@ -25,15 +27,13 @@ const UserView = () => {
                             <IconButton w={'14'} aria-label='Add User' icon={<AddIcon />} onClick={() => console.log('click')} />
                         </ButtonGroup>
                         <ButtonGroup isAttached>
-                            <Button w={'32'} onClick={() => console.log('click')}>Brand</Button>
-                            <IconButton w={'14'} aria-label='Add Brand' icon={<AddIcon />} onClick={() => console.log('click')} />
-                        </ButtonGroup>
-                        <ButtonGroup isAttached>
-                            <Button w={'32'} onClick={() => console.log('click')}>Category</Button>
-                            <IconButton w={'14'} aria-label='Add Category' icon={<AddIcon />} onClick={() => console.log('click')} />
+                            <Button w={'32'} onClick={permissionListDisclosure.onOpen}>Permission</Button>
+                            <IconButton w={'14'} aria-label='Add Permission' icon={<AddIcon />} onClick={permissionModalDisclosure.onOpen} />
                         </ButtonGroup>
                     </VStack>
                 </GridItem>
+                {permissionListDisclosure.isOpen ? <PermissionList isOpen={permissionListDisclosure.isOpen} onOpen={permissionListDisclosure.onOpen} onClose={permissionListDisclosure.onClose} /> : null}
+                {permissionModalDisclosure.isOpen ? <PermissionModal isOpen={permissionModalDisclosure.isOpen} onOpen={permissionModalDisclosure.onOpen} onClose={permissionModalDisclosure.onClose} /> : null}
             </Grid>
         </Box>
     );
