@@ -27,7 +27,7 @@ const ProductList = () => {
     return (
         <SimpleGrid
             spacing={4}
-            templateColumns='repeat(auto-fill, minmax(300px, 1fr))'
+            templateColumns='repeat(auto-fill, minmax(250px, 1fr))'
         >
             {products.map((product: Product) => {
                 return (
