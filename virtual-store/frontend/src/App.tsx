@@ -10,7 +10,7 @@ import FooterComponent from "./component/footer/FooterComponent";
 import NavbarComponent from "./component/navbar/NavbarComponent";
 import HomeView from "./view/home/HomeView";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import PermissionView from "./view/permission/PermissionView";
+import UserView from "./view/user/UserView";
 import ProductView from "./view/product/ProductView";
 
 const activeLabelStyles = {
@@ -69,7 +69,7 @@ export const App = () => (
             <Routes>
               <Route path={"/"} Component={() => <HomeView />} />
               <Route path={"/product"} Component={() => <ProductView />} />
-              <Route path={"/permission"} Component={() => <PermissionView />} />
+              <Route path={"/user"} Component={() => <UserView />} />
             </Routes>
           </div>
           <FooterComponent />

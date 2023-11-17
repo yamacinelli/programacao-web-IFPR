@@ -19,6 +19,7 @@ import BrandList from "../../component/brand/BrandList";
 import CategoryList from "../../component/category/CategoryList";
 import ProductModal from "../../component/product/ProductModal";
 import ProductList from "../../component/product/ProductList";
+import {Product} from "../../model/Product";
 
 const ProductView = () => {
     // product states
@@ -41,7 +42,7 @@ const ProductView = () => {
                 gap={2}
             >
                 <GridItem colSpan={10}>
-                    <ProductList />
+                    <ProductList onClick={productModalDisclosure.onOpen} />
                 </GridItem>
                 <GridItem colSpan={2}>
                     <VStack h={'full'} justify={'space-evenly'}>

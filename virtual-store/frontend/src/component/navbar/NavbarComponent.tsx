@@ -20,8 +20,8 @@ const NavbarComponent = () => {
                 <Button colorScheme='teal' variant='ghost' onClick={() => handleNavigate("/product")}>
                     Product
                 </Button>
-                <Button colorScheme='teal' variant='ghost' onClick={() => handleNavigate('/permission')}>
-                    Permission
+                <Button colorScheme='teal' variant='ghost' onClick={() => handleNavigate('/user')}>
+                    User
                 </Button>
                 <ColorModeSwitcher justifySelf="flex-end" />
             </HStack>

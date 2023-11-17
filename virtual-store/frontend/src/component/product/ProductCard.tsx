@@ -1,10 +1,13 @@
 import {Card, CardBody, CardFooter, CardHeader, Heading, HStack, Text, VStack} from "@chakra-ui/react";
 import {Product} from "../../model/Product";
 
-const ProductCard = ({product}: {product: Product}) => {
+const ProductCard = ({ product, onClick }: { product: Product, onClick: any }) => {
 
     return (
-        <Card variant={'outline'}>
+        <Card
+            variant={'outline'}
+            onClick={onClick}
+        >
             <CardBody>
                 <VStack
                     spacing={'1rem'}

@@ -7,7 +7,7 @@ import error = Simulate.error;
 import {Product} from "../../model/Product";
 import ProductCard from "./ProductCard";
 
-const ProductList = () => {
+const ProductList = ({ onClick }: any) => {
 
     const [products, setProducts] = useState([]);
     const service = new ProductService();
@@ -31,7 +31,7 @@ const ProductList = () => {
         >
             {products.map((product: Product) => {
                 return (
-                    <ProductCard product={product} />
+                    <ProductCard product={product} onClick={onClick} />
                 );
             })}
         </SimpleGrid>
