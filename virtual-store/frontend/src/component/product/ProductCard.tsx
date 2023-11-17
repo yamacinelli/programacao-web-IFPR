@@ -1,18 +1,25 @@
-import {Card, CardBody, CardFooter, Heading, Text, VStack} from "@chakra-ui/react";
+import {Card, CardBody, CardFooter, CardHeader, Heading, HStack, Text, VStack} from "@chakra-ui/react";
 import {Product} from "../../model/Product";
 
 const ProductCard = ({product}: {product: Product}) => {
 
     return (
-        <Card variant={'filled'}>
+        <Card variant={'outline'}>
             <CardBody>
-                <VStack spacing={'1rem'}>
-                    <Heading>{product.name}</Heading>
-                    <Text>{product.shortDescription}</Text>
+                <VStack
+                    spacing={'1rem'}
+                    align={'start'}
+                    textAlign={'start'}
+                >
+                    <Heading size={'md'}>{product.name}</Heading>
+                    <Text fontSize={'sm'}>{product.shortDescription}</Text>
                 </VStack>
             </CardBody>
             <CardFooter>
-                <Text>$ {product.saleValue}</Text>
+                <VStack align={'start'}>
+                    <Heading size={'xs'}>{product.brand?.name}</Heading>
+                    <Text color={'teal'} fontWeight={'bold'}>$ {product.saleValue}</Text>
+                </VStack>
             </CardFooter>
         </Card>
     );
