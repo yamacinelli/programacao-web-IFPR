@@ -18,6 +18,7 @@ import CategoryModal from "../../component/category/CategoryModal";
 import BrandList from "../../component/brand/BrandList";
 import CategoryList from "../../component/category/CategoryList";
 import ProductModal from "../../component/product/ProductModal";
+import ProductList from "../../component/product/ProductList";
 
 const ProductView = () => {
     // product states
@@ -39,7 +40,9 @@ const ProductView = () => {
                 templateColumns='repeat(12, 1fr)'
                 gap={2}
             >
-                <GridItem colSpan={10} />
+                <GridItem colSpan={10}>
+                    <ProductList />
+                </GridItem>
                 <GridItem colSpan={2}>
                     <VStack h={'full'} justify={'space-evenly'}>
                         <ButtonGroup isAttached>
